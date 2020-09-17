@@ -10,7 +10,10 @@
     </head>
 
     <body>
-        <form>
+        <input type="submit" value="Add New Noun" class="addNounButton">
+        <section class="wordList">
+
+        <form id="noun1">
             <label for="English">
                 Englanti: <input type="text" id="english"></label>
             <label for="Finnish">
@@ -37,7 +40,25 @@
                     <td><input type="text" id="row2col2"></td>
                 </tr>
             </table>
-            <button type="submit">Save</button>
+            <button type="submit" action=>Save</button>
         </form>
+        </section>
+        <script>
+            const addNounButton = document.querySelector('.addNounButton');
+            let wordList = document.querySelector(".wordList");
+            let i = 1;
+            //let nounForm = document.getElementById("noun1").cloneNode(true);
+            function addNounTemplate() {
+                i++
+                let newNounID = "noun" + i;
+                let nounForm = document.getElementById("noun1").cloneNode(true);
+                nounForm.id = newNounID;
+                wordList.appendChild(nounForm);
+
+            }
+
+            addNounButton.addEventListener('click', addNounTemplate);
+
+        </script>
     </body>
 </html>
