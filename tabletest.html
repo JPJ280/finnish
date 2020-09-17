@@ -6,14 +6,33 @@
             td, th {
                 border: 1px solid #000;
             }
+
+            form.noun:first-child {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            }
+
+            #verb0 {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            } 
         </style>
     </head>
 
     <body>
-        <input type="submit" value="Add New Noun" class="addNounButton">
+        <input type="submit" value="Add New Noun or Adjective" class="addNounButton">
+        <input type="submit" value="Add New Verb" class="addVerbButton">
         <section class="wordList">
 
-        <form id="noun1">
+        <form class="noun" id="noun0">
             <label for="English">
                 Englanti: <input type="text" id="english"></label>
             <label for="Finnish">
@@ -42,22 +61,64 @@
             </table>
             <button type="submit" action=>Save</button>
         </form>
+
+        <form class="verb" id="verb0">
+            <label for="English">
+                Englanti: <input type="text" id="english"></label>
+            <label for="Finnish">
+                Suomi (infinitiivi): <input type="text" id="finnish"></label>
+            <table>
+                <tr>
+                    <td></td>
+                    <th>Yksikkö</th>
+                    <th>Monikko</th>
+                </tr>
+                <tr>
+                    <th>1st</th>
+                    <td><input type="text" id="row1col1"></td>
+                    <td><input type="text" id="row1col2"></td>
+                </tr>
+                <tr>
+                    <th>2nd</th>
+                    <td><input type="text" id="row2col1"></td>
+                    <td><input type="text" id="row2col2"></td>
+                </tr>
+                <tr>
+                    <th>3rd</th>
+                    <td><input type="text" id="row2col1"></td>
+                    <td><input type="text" id="row2col2"></td>
+                </tr>
+            </table>
+            <button type="submit" action=>Save</button>
+        </form>
         </section>
         <script>
             const addNounButton = document.querySelector('.addNounButton');
+            const addVerbButton = document.querySelector('.addVerbButton');
             let wordList = document.querySelector(".wordList");
-            let i = 1;
+            let nounIndex = 0;
+            let verbIndex = 0;
             //let nounForm = document.getElementById("noun1").cloneNode(true);
             function addNounTemplate() {
-                i++
-                let newNounID = "noun" + i;
-                let nounForm = document.getElementById("noun1").cloneNode(true);
+                nounIndex++
+                let newNounID = "noun" + nounIndex;
+                let nounForm = document.getElementById("noun0").cloneNode(true);
                 nounForm.id = newNounID;
                 wordList.appendChild(nounForm);
 
             }
 
+            function addVerbTemplate() {
+                verbIndex++
+                let newVerbID = "verb" + verbIndex;
+                let verbForm = document.getElementById("verb0").cloneNode(true);
+                verbForm.id = newVerbID;
+                wordList.appendChild(verbForm);
+
+            }
+
             addNounButton.addEventListener('click', addNounTemplate);
+            addVerbButton.addEventListener('click', addVerbTemplate);
 
         </script>
     </body>
