@@ -34,9 +34,9 @@
 
         <form class="noun" id="noun0">
             <label for="English">
-                Englanti: <input type="text" id="english"></label>
+                Englanti: <input type="text" id="english0"></label>
             <label for="Finnish">
-                Suomi: <input type="text" id="finnish"></label>
+                Suomi: <input type="text" id="finnish0"></label>
             <table>
                 <tr>
                     <td></td>
@@ -45,21 +45,21 @@
                 </tr>
                 <tr>
                     <th>Nominatiivi</th>
-                    <td><input type="text" id="row1col1"></td>
-                    <td><input type="text" id="row1col2"></td>
+                    <td><input type="text" id="nomSing0" name="nomSing"></td>
+                    <td><input type="text" id="nomPlu0" name="nomPlu"></td>
                 </tr>
                 <tr>
                     <th>Genetiivi</th>
-                    <td><input type="text" id="row2col1"></td>
-                    <td><input type="text" id="row2col2"></td>
+                    <td><input type="text" id="genSing0" name="genSing"></td>
+                    <td><input type="text" id="genPlu0" name="genPlu"></td>
                 </tr>
                 <tr>
                     <th>Partitiivi</th>
-                    <td><input type="text" id="row2col1"></td>
-                    <td><input type="text" id="row2col2"></td>
+                    <td><input type="text" id="partSing0" name="partSing"></td>
+                    <td><input type="text" id="partPlu0" name="partPlu"></td>
                 </tr>
             </table>
-            <button type="submit" action=>Save</button>
+            <input type="button" id="noun0Submit" value="Save">
         </form>
 
         <form class="verb" id="verb0">
@@ -70,56 +70,114 @@
             <table>
                 <tr>
                     <td></td>
-                    <th>Yksikkö</th>
-                    <th>Monikko</th>
+                    <th>Preesens Positiivinen</th>
+                    <th>Preesens Negatiivinen</th>
                 </tr>
                 <tr>
-                    <th>1st</th>
-                    <td><input type="text" id="row1col1"></td>
-                    <td><input type="text" id="row1col2"></td>
+                    <th>Minä</th>
+                    <td><input type="text" id="minaPresPos0"></td>
+                    <td><input type="text" id="minaPresNeg0"></td>
                 </tr>
                 <tr>
-                    <th>2nd</th>
-                    <td><input type="text" id="row2col1"></td>
-                    <td><input type="text" id="row2col2"></td>
+                    <th>Sinä</th>
+                    <td><input type="text" id="sinaPresPos0"></td>
+                    <td><input type="text" id="sinaPresNeg0"></td>
                 </tr>
                 <tr>
-                    <th>3rd</th>
-                    <td><input type="text" id="row2col1"></td>
-                    <td><input type="text" id="row2col2"></td>
+                    <th>Hän</th>
+                    <td><input type="text" id="hanPresPos0"></td>
+                    <td><input type="text" id="hanPresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Me</th>
+                    <td><input type="text" id="mePresPos0"></td>
+                    <td><input type="text" id="mePresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Te</th>
+                    <td><input type="text" id="tePresPos0"></td>
+                    <td><input type="text" id="tePResNeg0"></td>
+                </tr>
+                <tr>
+                    <th>He</th>
+                    <td><input type="text" id="hePresPos0"></td>
+                    <td><input type="text" id="hePresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Passiivi</th>
+                    <td><input type="text" id="passPresPos0"></td>
+                    <td><input type="text" id="passPresNeg0"></td>
                 </tr>
             </table>
-            <button type="submit" action=>Save</button>
+            <input type="button" value="Save">
         </form>
         </section>
         <script>
             const addNounButton = document.querySelector('.addNounButton');
             const addVerbButton = document.querySelector('.addVerbButton');
-            let wordList = document.querySelector(".wordList");
-            let nounIndex = 0;
+            let wordList = document.querySelector(".wordList"); //defines var wordList as wordList section of page
+
+            let nounIndex = 0; 
             let verbIndex = 0;
-            //let nounForm = document.getElementById("noun1").cloneNode(true);
+
+            let noun1Submit = document.querySelector('#noun1Submit')
+
             function addNounTemplate() {
                 nounIndex++
                 let newNounID = "noun" + nounIndex;
+                let newNounSubmitID = "noun" + nounIndex +"Submit";
                 let nounForm = document.getElementById("noun0").cloneNode(true);
-                nounForm.id = newNounID;
+                let nounChildren = nounForm.children;
+                nounChildren[0].children[0].id = "english" + nounIndex;
+                nounChildren[1].children[0].id = "english" + nounIndex;
+                let nounTable = nounChildren[2];
+                let nounTableBody = nounTable.children[0];
+                let nounTableRows = nounTableBody.childNodes;
+                nounTableRows[2].children[1].id = "nomSing" + nounIndex;
+                nounTableRows[2].children[2].id = "nomPlu" + nounIndex;
+                nounTableRows[4].children[1].id = "genSing" + nounIndex;
+                nounTableRows[4].children[2].id = "genPlu" + nounIndex;
+                nounTableRows[6].children[1].id = "partSing" + nounIndex;
+                nounTableRows[6].children[2].id = "partPlu" + nounIndex;
+                nounForm.id = newNounID; //
+                nounChildren[3].id = newNounSubmitID;
+                nounChildren[3].class = newNounSubmitID;
+
+
                 wordList.appendChild(nounForm);
+
+            }
+
+            let nounForm = document.getElementById("noun0").cloneNode(true);
+                let nounChildren = nounForm.children;
+                let nounTable = nounChildren[2];
+                let nounTableBody = nounTable[0];
+
+            function returnChildNodes() { //debugging, remove
+                let nounForm = document.getElementById("noun0").cloneNode(true);
+                let nounChildNodeList = nounForm.childNodes;
+                return nounChildNodeList;
 
             }
 
             function addVerbTemplate() {
                 verbIndex++
                 let newVerbID = "verb" + verbIndex;
+                let newVerbSubmitID = "verb" + nounIndex +"Submit";
                 let verbForm = document.getElementById("verb0").cloneNode(true);
                 verbForm.id = newVerbID;
+
+
                 wordList.appendChild(verbForm);
 
             }
 
+
             addNounButton.addEventListener('click', addNounTemplate);
-            addVerbButton.addEventListener('click', addVerbTemplate);
+            addVerbButton.addEventListener('click', addVerbTemplate);            
+
 
         </script>
+        <script src="collect-word.js" defer></script>
     </body>
 </html>
