@@ -34,9 +34,9 @@
 
         <form class="noun" id="noun0">
             <label for="English">
-                Englanti: <input type="text" id="english0"></label>
+                Englanti: <input type="text" id="englishNoun0"></label>
             <label for="Finnish">
-                Suomi: <input type="text" id="finnish0"></label>
+                Suomi: <input type="text" id="finnishNoun0"></label>
             <table>
                 <tr>
                     <td></td>
@@ -64,9 +64,9 @@
 
         <form class="verb" id="verb0">
             <label for="English">
-                Englanti: <input type="text" id="english"></label>
+                Englanti: <input type="text" id="englishVerb0"></label>
             <label for="Finnish">
-                Suomi (infinitiivi): <input type="text" id="finnish"></label>
+                Suomi (infinitiivi): <input type="text" id="finnishVerb0"></label>
             <table>
                 <tr>
                     <td></td>
@@ -128,17 +128,17 @@
                 let newNounSubmitID = "noun" + nounIndex +"Submit";
                 let nounForm = document.getElementById("noun0").cloneNode(true);
                 let nounChildren = nounForm.children;
-                nounChildren[0].children[0].id = "english" + nounIndex;
-                nounChildren[1].children[0].id = "english" + nounIndex;
+                nounChildren[0].children[0].id = "englishNoun" + nounIndex;
+                nounChildren[1].children[0].id = "finnishNoun" + nounIndex;
                 let nounTable = nounChildren[2];
                 let nounTableBody = nounTable.children[0];
                 let nounTableRows = nounTableBody.childNodes;
-                nounTableRows[2].children[1].id = "nomSing" + nounIndex;
-                nounTableRows[2].children[2].id = "nomPlu" + nounIndex;
-                nounTableRows[4].children[1].id = "genSing" + nounIndex;
-                nounTableRows[4].children[2].id = "genPlu" + nounIndex;
-                nounTableRows[6].children[1].id = "partSing" + nounIndex;
-                nounTableRows[6].children[2].id = "partPlu" + nounIndex;
+                nounTableRows[2].children[1].childNodes[0].id = "nomSing" + nounIndex;
+                nounTableRows[2].children[2].childNodes[0].id = "nomPlu" + nounIndex;
+                nounTableRows[4].children[1].childNodes[0].id = "genSing" + nounIndex;
+                nounTableRows[4].children[2].childNodes[0].id = "genPlu" + nounIndex;
+                nounTableRows[6].children[1].childNodes[0].id = "partSing" + nounIndex;
+                nounTableRows[6].children[2].childNodes[0].id = "partPlu" + nounIndex;
                 nounForm.id = newNounID; //
                 nounChildren[3].id = newNounSubmitID;
                 nounChildren[3].class = newNounSubmitID;
@@ -151,7 +151,14 @@
             let nounForm = document.getElementById("noun0").cloneNode(true);
                 let nounChildren = nounForm.children;
                 let nounTable = nounChildren[2];
-                let nounTableBody = nounTable[0];
+                let nounTableBody = nounTable.children[0];
+                let nounTableRows = nounTableBody.childNodes;
+
+                let verbForm = document.getElementById("verb0").cloneNode(true);
+                let verbChildren = verbForm.children;
+                let verbTable = verbChildren[2];
+                let verbTableBody = verbTable.children[0];
+                let verbTableRows = verbTableBody.childNodes;
 
             function returnChildNodes() { //debugging, remove
                 let nounForm = document.getElementById("noun0").cloneNode(true);
@@ -163,9 +170,34 @@
             function addVerbTemplate() {
                 verbIndex++
                 let newVerbID = "verb" + verbIndex;
-                let newVerbSubmitID = "verb" + nounIndex +"Submit";
+                let newVerbSubmitID = "verb" + verbIndex +"Submit";
                 let verbForm = document.getElementById("verb0").cloneNode(true);
+                let verbChildren = verbForm.children;
                 verbForm.id = newVerbID;
+                verbChildren[0].children[0].id = "englishVerb" + verbIndex;
+                verbChildren[1].children[0].id = "finnishVerb" + verbIndex;
+                let verbTable = verbChildren[2];
+                let verbTableBody = verbTable.children[0];
+                let verbTableRows = verbTableBody.childNodes;
+                verbTableRows[2].children[1].childNodes[0].id = "minaPresPos" + verbIndex;
+                verbTableRows[2].children[2].childNodes[0].id = "minaPresNeg" + verbIndex;
+                verbTableRows[4].children[1].childNodes[0].id = "sinaPresPos" + verbIndex;
+                verbTableRows[4].children[2].childNodes[0].id = "sinaPresNeg" + verbIndex;
+                verbTableRows[6].children[1].childNodes[0].id = "hanPresPos" + verbIndex;
+                verbTableRows[6].children[2].childNodes[0].id = "hanPresNeg" + verbIndex;
+                verbTableRows[8].children[1].childNodes[0].id = "mePresPos" + verbIndex;
+                verbTableRows[8].children[2].childNodes[0].id = "mePresNeg" + verbIndex;
+                verbTableRows[10].children[1].childNodes[0].id = "tePresPos" + verbIndex;
+                verbTableRows[10].children[2].childNodes[0].id = "tePresNeg" + verbIndex;
+                verbTableRows[12].children[1].childNodes[0].id = "hePresPos" + verbIndex;
+                verbTableRows[12].children[2].childNodes[0].id = "hePresNeg" + verbIndex;
+                verbTableRows[14].children[1].childNodes[0].id = "passPresPos" + verbIndex;
+                verbTableRows[14].children[2].childNodes[0].id = "passPresNeg" + verbIndex;
+                verbChildren[3].id = newVerbSubmitID;
+
+
+
+
 
 
                 wordList.appendChild(verbForm);
