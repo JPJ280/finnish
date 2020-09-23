@@ -7,6 +7,8 @@ let verb = {
 let otherWord = {
 }
 
+const saveAllWordsButton = document.getElementById('saveAllWordsButton');
+
 let deckName = '';
 
 let nounList = [];
@@ -41,7 +43,6 @@ function loadOtherWordSubmitButton() {
 }
 
 function saveNoun(nounSaveIndex) {
-    alert('placeholder');
     let nounToSave = Object.create(substantive);
     //let englishIndex = "english" + nounSaveIndex;
     let englishField = document.getElementById("englishNoun" + nounSaveIndex);
@@ -66,7 +67,6 @@ function saveNoun(nounSaveIndex) {
 }
 
 function saveVerb(verbSaveIndex) {
-    alert('placeholder');
     let verbToSave = Object.create(verb);
     let englishField = document.getElementById("englishVerb" + verbSaveIndex);
     verbToSave.englishWord = englishField.value;
@@ -107,7 +107,6 @@ function saveVerb(verbSaveIndex) {
 }
 
 function saveOtherWord(otherWordSaveIndex) {
-    alert('placeholder');
     let otherWordToSave = Object.create(otherWord);
     let englishField = document.getElementById("englishOtherWord" + otherWordSaveIndex);
     otherWordToSave.englishWord = englishField.value;
@@ -125,6 +124,19 @@ saveDeckSubmitButton.addEventListener('click', saveDeckToFile);
 function saveDeckName() {
     let deckNameField = document.getElementById("deckName");
     deckName = deckNameField.value;
+}
+
+saveAllWordsButton.addEventListener('click', saveAllWords);
+function saveAllWords() {
+    for(let saveAllNounsIndex = 1; saveAllNounsIndex <= nounIndex; saveAllNounsIndex++) {
+        nounSubmitButtons[saveAllNounsIndex].click();
+    }
+    for(let saveAllVerbsIndex = 1; saveAllVerbsIndex <= verbIndex; saveAllVerbsIndex++) {
+        verbSubmitButtons[saveAllVerbsIndex].click();
+    }
+    for(let saveAllOtherWordsIndex = 1; saveAllOtherWordsIndex <= otherWordIndex; saveAllOtherWordsIndex++) {
+        otherWordSubmitButtons[saveAllOtherWordsIndex].click();
+    }
 }
 
 function saveDeckToFile() {

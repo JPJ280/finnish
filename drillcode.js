@@ -218,9 +218,6 @@ function questionsStart() {
         /*else if() { //pronoun
 
         }*/
-        holdIt = true;
-        testingPara.textContent += answer;
-
     }
     
     getAnswers();

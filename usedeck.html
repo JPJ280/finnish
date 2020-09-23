@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <input type="file" id="deckUpload" name="deckUpload">
+        <button id="confirmUpload" name="confirmUpload">Upload Deck</button>
+        <br>
+        <button id="start" name="start">Start</button>
+        <br>
+        <p id="instruction"></p>
+        <br>
+        <div>
+            <label for="answerLabel">
+                Answer: <input type="text" id="userAnswerField"><button type="button" id="userAnswerSubmit">Check</button>
+            </label>
+        </div>
+        <br>
+        <p id="feedback"></p>
+        <br>
+        <p id="testing"></p>
+
+        <script>
+            let deckFile;
+            let deck;
+            let deckNouns;
+            let deckVerbs;
+            let deckOtherWords;
+            let startButton = document.getElementById('start');
+            const confirmUpload = document.getElementById('confirmUpload');
+            confirmUpload.addEventListener('click', uploadFile);
+
+            async function uploadFile() {
+                deckFile = document.getElementById('deckUpload').files;
+                let deckFileText = await deckFile[0].text();
+                deck = JSON.parse(deckFileText);
+                deckNouns = deck.nouns;
+                deckVerbs = deck.verbs;
+                deckOtherWords = deck.otherWords;
+            }
+
+
+        </script>
+        <script src="drillcode.js" defer></script>
+    </body>
+
+</html>
