@@ -4,11 +4,18 @@ let substantive = {
 let verb = {
 }
 
+let otherWord = {
+}
+
+let deckName = '';
+
 let nounList = [];
 let verbList = [];
+let otherWordList = [];
 
 let nounSubmitButtons = [];
 let verbSubmitButtons = [];
+let otherWordSubmitButtons = [];
 
 function loadNounSubmitButton() {
     nounSubmitButtons[nounIndex] = document.querySelector('#noun' + nounIndex + 'Submit');
@@ -26,9 +33,16 @@ function loadVerbSubmitButton() {
     }  
 }
 
+function loadOtherWordSubmitButton() {
+    otherWordSubmitButtons[otherWordIndex] = document.querySelector('#otherWord' + otherWordIndex + 'Submit');
+    for (let k = otherWordIndex; k < otherWordIndex + 1; k++) {
+        otherWordSubmitButtons[k].addEventListener('click', () => saveOtherWord(k));
+    }  
+}
+
 function saveNoun(nounSaveIndex) {
     alert('placeholder');
-    let nounToSave = nounList[nounSaveIndex];
+    let nounToSave = Object.create(substantive);
     //let englishIndex = "english" + nounSaveIndex;
     let englishField = document.getElementById("englishNoun" + nounSaveIndex);
     nounToSave.englishWord = englishField.value;
@@ -40,6 +54,12 @@ function saveNoun(nounSaveIndex) {
     nounToSave.nomPlu = nomPluField.value;
     let genSingField = document.getElementById("genSing" + nounSaveIndex);
     nounToSave.genSing = genSingField.value;
+    let genPluField = document.getElementById("genPlu" + nounSaveIndex);
+    nounToSave.genPlu = genPluField.value;
+    let partSingField = document.getElementById("partSing" + nounSaveIndex);
+    nounToSave.partSing = partSingField.value;
+    let partPluField = document.getElementById("partPlu" + nounSaveIndex);
+    nounToSave.partPlu = partPluField.value;
 
 
     nounList[nounSaveIndex] = nounToSave;
@@ -47,7 +67,7 @@ function saveNoun(nounSaveIndex) {
 
 function saveVerb(verbSaveIndex) {
     alert('placeholder');
-    let verbToSave = verbList[verbSaveIndex];
+    let verbToSave = Object.create(verb);
     let englishField = document.getElementById("englishVerb" + verbSaveIndex);
     verbToSave.englishWord = englishField.value;
     let finnishField = document.getElementById("finnishVerb" + verbSaveIndex);
@@ -58,15 +78,74 @@ function saveVerb(verbSaveIndex) {
     verbToSave.minaPresNeg = minaPresNegField.value;
     let sinaPresPosField = document.getElementById("sinaPresPos" + verbSaveIndex);
     verbToSave.sinaPresPos = sinaPresPosField.value;
+    let sinaPresNegField = document.getElementById("sinaPresNeg" + verbSaveIndex);
+    verbToSave.sinaPresNeg = sinaPresNegField.value;
+    let hanPresPosField = document.getElementById("hanPresPos" + verbSaveIndex);
+    verbToSave.hanPresPos = hanPresPosField.value;
+    let hanPresNegField = document.getElementById("hanPresNeg" + verbSaveIndex);
+    verbToSave.hanPresNeg = hanPresNegField.value;
+    let mePresPosField = document.getElementById("mePresPos" + verbSaveIndex);
+    verbToSave.mePresPos = mePresPosField.value;
+    let mePresNegField = document.getElementById("mePresNeg" + verbSaveIndex);
+    verbToSave.mePresNeg = mePresNegField.value;
+    let tePresPosField = document.getElementById("tePresPos" + verbSaveIndex);
+    verbToSave.tePresPos = tePresPosField.value;
+    let tePresNegField = document.getElementById("tePresNeg" + verbSaveIndex);
+    verbToSave.tePresNeg = tePresNegField.value;
+    let hePresPosField = document.getElementById("hePresPos" + verbSaveIndex);
+    verbToSave.hePresPos = hePresPosField.value;
+    let hePresNegField = document.getElementById("hePresNeg" + verbSaveIndex);
+    verbToSave.hePresNeg = hePresNegField.value;
+    let passPresPosField = document.getElementById("passPresPos" + verbSaveIndex);
+    verbToSave.passPresPos = passPresPosField.value;
+    let passPresNegField = document.getElementById("passPresNeg" + verbSaveIndex);
+    verbToSave.passPresNeg = passPresNegField.value;
+
 
 
     verbList[verbSaveIndex] = verbToSave;
 }
 
+function saveOtherWord(otherWordSaveIndex) {
+    alert('placeholder');
+    let otherWordToSave = Object.create(otherWord);
+    let englishField = document.getElementById("englishOtherWord" + otherWordSaveIndex);
+    otherWordToSave.englishWord = englishField.value;
+    let finnishField = document.getElementById("finnishOtherWord" + otherWordSaveIndex);
+    otherWordToSave.finnishWord = finnishField.value;
+}
+
 addNounButton.addEventListener('click', loadNounSubmitButton);
 addVerbButton.addEventListener('click', loadVerbSubmitButton);
+addOtherWordButton.addEventListener('click', loadOtherWordSubmitButton);
 
-{   noun1 = Object.create(substantive); //no need to look at this
+deckNameSubmitButton.addEventListener('click', saveDeckName);
+saveDeckSubmitButton.addEventListener('click', saveDeckToFile);
+
+function saveDeckName() {
+    let deckNameField = document.getElementById("deckName");
+    deckName = deckNameField.value;
+}
+
+function saveDeckToFile() {
+    if(deckName === '') {
+        alert('Please input a valid name for the deck')
+    }
+    else {
+        /*let nouns = JSON.stringify(nounList);
+        let verbs = JSON.stringify(verbList);
+        let otherWords = JSON.stringify(otherWordList);*/
+        let fullDeck = {'nouns': nounList, 'verbs': verbList, 'otherWords': otherWordList};
+        let fullDeckString = JSON.stringify(fullDeck);
+        let link = document.createElement('a');
+        link.download = deckName + ".json";
+        link.href = 'data:application/json,' + encodeURIComponent(fullDeckString);
+        link.click() 
+
+    }
+}
+
+/*{   noun1 = Object.create(substantive); //no need to look at this
     noun2 = Object.create(substantive);
     noun3 = Object.create(substantive);
     noun4 = Object.create(substantive);
@@ -93,6 +172,7 @@ addVerbButton.addEventListener('click', loadVerbSubmitButton);
     noun25 = Object.create(substantive); 
 
     nounList = ['the finnish language', noun1, noun2, noun3, noun4, noun5, noun6, noun7, noun8, noun9, noun10, noun11, noun12, noun13, noun14, noun15, noun16, noun17, noun18, noun19, noun20, noun21, noun22, noun23, noun24, noun25];
+
 }
 
 {   verb1 = Object.create(verb); //or this
@@ -123,3 +203,18 @@ addVerbButton.addEventListener('click', loadVerbSubmitButton);
 
     verbList = ['the finnish language', verb1, verb2, verb3, verb4, verb5, verb6, verb7, verb8, verb9, verb10, verb11, verb12, verb13, verb14, verb15, verb16, verb17, verb18, verb19, verb20, verb21, verb22, verb23, verb24, verb25];
 }
+
+{
+    otherWord1 = Object.create(otherWord);
+    otherWord2 = Object.create(otherWord);
+    otherWord3 = Object.create(otherWord);
+    otherWord4 = Object.create(otherWord);
+    otherWord5 = Object.create(otherWord);
+    otherWord6 = Object.create(otherWord);
+    otherWord7 = Object.create(otherWord);
+    otherWord8 = Object.create(otherWord);
+    otherWord9 = Object.create(otherWord);
+    otherWord10 = Object.create(otherWord);
+
+    otherWordList = ['the finnish language', otherWord1, otherWord2, otherWord3, otherWord4, otherWord5, otherWord6, otherWord7, otherWord8, otherWord9, otherWord10];
+} */

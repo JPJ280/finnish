@@ -7,7 +7,7 @@
                 border: 1px solid #000;
             }
 
-            form.noun:first-child {
+            #noun0 {
                 height: 1px;
                 width: 1px;
                 color: lime;
@@ -23,13 +23,31 @@
                 position: absolute;
                 left: -10000px;
                 overflow: hidden;
-            } 
+            }
+            
+            #otherWord0 {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            }
         </style>
     </head>
 
     <body>
+        <input type="submit" value="Save Deck" class="saveDeckSubmit">
+        <br>
+        <label for="deckName">
+            Name of Deck: <input type="text" id="deckName"></label>
+            <input type="submit" value="Save Deck Name" class="deckNameSubmit">
+        
+        <br>
+
         <input type="submit" value="Add New Noun or Adjective" class="addNounButton">
         <input type="submit" value="Add New Verb" class="addVerbButton">
+        <input type="submit" value="Add Other" class="addOtherWordButton">
         <section class="wordList">
 
         <form class="noun" id="noun0">
@@ -111,19 +129,30 @@
             </table>
             <input type="button" value="Save">
         </form>
+        <form id="otherWord0">
+            <label for="English">
+                Englanti: <input type="text" id="englishOtherWord0"></label>
+            <label for="Finnish">
+                Suomi (infinitiivi): <input type="text" id="finnishOtherWord0"></label>
+            <input type="button" value="Save">
+        </form>
         </section>
         <script>
             const addNounButton = document.querySelector('.addNounButton');
             const addVerbButton = document.querySelector('.addVerbButton');
+            const addOtherWordButton = document.querySelector('.addOtherWordButton');
+            const deckNameSubmitButton = document.querySelector('.deckNameSubmit');
+            const saveDeckSubmitButton = document.querySelector('.saveDeckSubmit');
             let wordList = document.querySelector(".wordList"); //defines var wordList as wordList section of page
 
             let nounIndex = 0; 
             let verbIndex = 0;
+            let otherWordIndex = 0;
 
-            let noun1Submit = document.querySelector('#noun1Submit')
+            //let noun1Submit = document.querySelector('#noun1Submit')
 
             function addNounTemplate() {
-                nounIndex++
+                nounIndex++;
                 let newNounID = "noun" + nounIndex;
                 let newNounSubmitID = "noun" + nounIndex +"Submit";
                 let nounForm = document.getElementById("noun0").cloneNode(true);
@@ -168,7 +197,7 @@
             }
 
             function addVerbTemplate() {
-                verbIndex++
+                verbIndex++;
                 let newVerbID = "verb" + verbIndex;
                 let newVerbSubmitID = "verb" + verbIndex +"Submit";
                 let verbForm = document.getElementById("verb0").cloneNode(true);
@@ -204,9 +233,23 @@
 
             }
 
+            function addOtherWordTemplate() {
+                otherWordIndex++;
+                let newOtherWordID = "otherWord" + otherWordIndex;
+                let newOtherWordSubmitID = "otherWord" + otherWordIndex + "Submit";
+                let otherWordForm = document.getElementById("otherWord0").cloneNode(true);
+                let otherWordChildren = otherWordForm.children;
+                otherWordChildren[0].children[0].id = "englishOtherWord" + otherWordIndex;
+                otherWordChildren[1].children[0].id = "finnishOtherWord" + otherWordIndex;
+                otherWordChildren[2].id = newOtherWordSubmitID;
+                otherWordForm.id = newOtherWordID;
+                wordList.appendChild(otherWordForm);
+            }
+
 
             addNounButton.addEventListener('click', addNounTemplate);
-            addVerbButton.addEventListener('click', addVerbTemplate);            
+            addVerbButton.addEventListener('click', addVerbTemplate);        
+            addOtherWordButton.addEventListener('click', addOtherWordTemplate);    
 
 
         </script>
