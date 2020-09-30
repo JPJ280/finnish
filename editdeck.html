@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <style>
+            td, th {
+                border: 1px solid #000;
+            }
+
+            #noun0 {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            }
+
+            #verb0 {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            }
+            
+            #otherWord0 {
+                height: 1px;
+                width: 1px;
+                color: lime;
+                position: absolute;
+                left: -10000px;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body>
+        <input type="file" id="deckUpload" name="deckUpload">
+        <button id="confirmUpload" name="confirmUpload">Upload Deck</button>
+        <br>
+        <button id="saveDeckSubmit" name="saveDeckSubmit">Save Deck</button>
+
+        <input type="submit" value="Add New Noun or Adjective" class="addNounButton">
+        <input type="submit" value="Add New Verb" class="addVerbButton">
+        <input type="submit" value="Add Other" class="addOtherWordButton">
+        <br>
+        <input type="submit" value="Save All" id="saveAllWordsButton">
+        <section class="wordList">
+
+        <form class="noun" id="noun0">
+            <label for="English">
+                Englanti: <input type="text" id="englishNoun0"></label>
+            <label for="Finnish">
+                Suomi: <input type="text" id="finnishNoun0"></label>
+            <table>
+                <tr>
+                    <td></td>
+                    <th>Yksikkö</th>
+                    <th>Monikko</th>
+                </tr>
+                <tr>
+                    <th>Nominatiivi</th>
+                    <td><input type="text" id="nomSing0" name="nomSing"></td>
+                    <td><input type="text" id="nomPlu0" name="nomPlu"></td>
+                </tr>
+                <tr>
+                    <th>Genetiivi</th>
+                    <td><input type="text" id="genSing0" name="genSing"></td>
+                    <td><input type="text" id="genPlu0" name="genPlu"></td>
+                </tr>
+                <tr>
+                    <th>Partitiivi</th>
+                    <td><input type="text" id="partSing0" name="partSing"></td>
+                    <td><input type="text" id="partPlu0" name="partPlu"></td>
+                </tr>
+            </table>
+            <input type="button" id="noun0Submit" value="Save">
+        </form>
+
+        <form class="verb" id="verb0">
+            <label for="English">
+                Englanti: <input type="text" id="englishVerb0"></label>
+            <label for="Finnish">
+                Suomi (infinitiivi): <input type="text" id="finnishVerb0"></label>
+            <table>
+                <tr>
+                    <td></td>
+                    <th>Preesens Positiivinen</th>
+                    <th>Preesens Negatiivinen</th>
+                </tr>
+                <tr>
+                    <th>Minä</th>
+                    <td><input type="text" id="minaPresPos0"></td>
+                    <td><input type="text" id="minaPresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Sinä</th>
+                    <td><input type="text" id="sinaPresPos0"></td>
+                    <td><input type="text" id="sinaPresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Hän</th>
+                    <td><input type="text" id="hanPresPos0"></td>
+                    <td><input type="text" id="hanPresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Me</th>
+                    <td><input type="text" id="mePresPos0"></td>
+                    <td><input type="text" id="mePresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Te</th>
+                    <td><input type="text" id="tePresPos0"></td>
+                    <td><input type="text" id="tePResNeg0"></td>
+                </tr>
+                <tr>
+                    <th>He</th>
+                    <td><input type="text" id="hePresPos0"></td>
+                    <td><input type="text" id="hePresNeg0"></td>
+                </tr>
+                <tr>
+                    <th>Passiivi</th>
+                    <td><input type="text" id="passPresPos0"></td>
+                    <td><input type="text" id="passPresNeg0"></td>
+                </tr>
+            </table>
+            <input type="button" value="Save">
+        </form>
+        <form id="otherWord0">
+            <label for="English">
+                Englanti: <input type="text" id="englishOtherWord0"></label>
+            <label for="Finnish">
+                Suomi (infinitiivi): <input type="text" id="finnishOtherWord0"></label>
+            <input type="button" value="Save">
+        </form>
+        </section>
+        <script>
+
+            const addNounButton = document.querySelector('.addNounButton');
+            const addVerbButton = document.querySelector('.addVerbButton');
+            const addOtherWordButton = document.querySelector('.addOtherWordButton');
+            const saveDeckSubmitButton = document.getElementById('saveDeckSubmit');
+            let wordList = document.querySelector(".wordList"); //defines var wordList as wordList section of page
+
+            let nounIndex = 0; 
+            let verbIndex = 0;
+            let otherWordIndex = 0;
+
+            //let noun1Submit = document.querySelector('#noun1Submit')
+
+            function addNounTemplate() {
+                if(uploaded === false){
+                    alert('Please submit a deck!');
+                }
+                else{
+                nounIndex++;
+                let newNounID = "noun" + nounIndex;
+                let newNounSubmitID = "noun" + nounIndex +"Submit";
+                let nounForm = document.getElementById("noun0").cloneNode(true);
+                let nounChildren = nounForm.children;
+                nounChildren[0].children[0].id = "englishNoun" + nounIndex;
+                nounChildren[1].children[0].id = "finnishNoun" + nounIndex;
+                let nounTable = nounChildren[2];
+                let nounTableBody = nounTable.children[0];
+                let nounTableRows = nounTableBody.childNodes;
+                nounTableRows[2].children[1].childNodes[0].id = "nomSing" + nounIndex;
+                nounTableRows[2].children[2].childNodes[0].id = "nomPlu" + nounIndex;
+                nounTableRows[4].children[1].childNodes[0].id = "genSing" + nounIndex;
+                nounTableRows[4].children[2].childNodes[0].id = "genPlu" + nounIndex;
+                nounTableRows[6].children[1].childNodes[0].id = "partSing" + nounIndex;
+                nounTableRows[6].children[2].childNodes[0].id = "partPlu" + nounIndex;
+                nounForm.id = newNounID; //
+                nounChildren[3].id = newNounSubmitID;
+                nounChildren[3].class = newNounSubmitID;
+
+
+                wordList.appendChild(nounForm);
+                }
+
+            }
+
+            let nounForm = document.getElementById("noun0").cloneNode(true);
+                let nounChildren = nounForm.children;
+                let nounTable = nounChildren[2];
+                let nounTableBody = nounTable.children[0];
+                let nounTableRows = nounTableBody.childNodes;
+
+                let verbForm = document.getElementById("verb0").cloneNode(true);
+                let verbChildren = verbForm.children;
+                let verbTable = verbChildren[2];
+                let verbTableBody = verbTable.children[0];
+                let verbTableRows = verbTableBody.childNodes;
+
+            function returnChildNodes() { //debugging, remove
+                let nounForm = document.getElementById("noun0").cloneNode(true);
+                let nounChildNodeList = nounForm.childNodes;
+                return nounChildNodeList;
+
+            }
+
+            function addVerbTemplate() {
+                if(uploaded === false){
+                    alert('Please submit a deck!');
+                }
+                else{
+                    verbIndex++;
+                    let newVerbID = "verb" + verbIndex;
+                    let newVerbSubmitID = "verb" + verbIndex +"Submit";
+                    let verbForm = document.getElementById("verb0").cloneNode(true);
+                    let verbChildren = verbForm.children;
+                    verbForm.id = newVerbID;
+                    verbChildren[0].children[0].id = "englishVerb" + verbIndex;
+                    verbChildren[1].children[0].id = "finnishVerb" + verbIndex;
+                    let verbTable = verbChildren[2];
+                    let verbTableBody = verbTable.children[0];
+                    let verbTableRows = verbTableBody.childNodes;
+                    verbTableRows[2].children[1].childNodes[0].id = "minaPresPos" + verbIndex;
+                    verbTableRows[2].children[2].childNodes[0].id = "minaPresNeg" + verbIndex;
+                    verbTableRows[4].children[1].childNodes[0].id = "sinaPresPos" + verbIndex;
+                    verbTableRows[4].children[2].childNodes[0].id = "sinaPresNeg" + verbIndex;
+                    verbTableRows[6].children[1].childNodes[0].id = "hanPresPos" + verbIndex;
+                    verbTableRows[6].children[2].childNodes[0].id = "hanPresNeg" + verbIndex;
+                    verbTableRows[8].children[1].childNodes[0].id = "mePresPos" + verbIndex;
+                    verbTableRows[8].children[2].childNodes[0].id = "mePresNeg" + verbIndex;
+                    verbTableRows[10].children[1].childNodes[0].id = "tePresPos" + verbIndex;
+                    verbTableRows[10].children[2].childNodes[0].id = "tePresNeg" + verbIndex;
+                    verbTableRows[12].children[1].childNodes[0].id = "hePresPos" + verbIndex;
+                    verbTableRows[12].children[2].childNodes[0].id = "hePresNeg" + verbIndex;
+                    verbTableRows[14].children[1].childNodes[0].id = "passPresPos" + verbIndex;
+                    verbTableRows[14].children[2].childNodes[0].id = "passPresNeg" + verbIndex;
+                    verbChildren[3].id = newVerbSubmitID;
+
+
+
+
+
+
+                    wordList.appendChild(verbForm);
+                }
+            }
+
+            function addOtherWordTemplate() {
+                if(uploaded === false){
+                    alert('Please submit a deck!');
+                }
+                else{
+                    otherWordIndex++;
+                    let newOtherWordID = "otherWord" + otherWordIndex;
+                    let newOtherWordSubmitID = "otherWord" + otherWordIndex + "Submit";
+                    let otherWordForm = document.getElementById("otherWord0").cloneNode(true);
+                    let otherWordChildren = otherWordForm.children;
+                    otherWordChildren[0].children[0].id = "englishOtherWord" + otherWordIndex;
+                    otherWordChildren[1].children[0].id = "finnishOtherWord" + otherWordIndex;
+                    otherWordChildren[2].id = newOtherWordSubmitID;
+                    otherWordForm.id = newOtherWordID;
+                    wordList.appendChild(otherWordForm);
+                }
+            }
+
+
+            addNounButton.addEventListener('click', addNounTemplate);
+            addVerbButton.addEventListener('click', addVerbTemplate);        
+            addOtherWordButton.addEventListener('click', addOtherWordTemplate);  
+
+
+        </script>
+        <!--<script src="collect-word.js" defer></script>-->
+        <script src="deckeditcode.js" defer></script>
+    </body>
+</html>

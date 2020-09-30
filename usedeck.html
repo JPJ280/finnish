@@ -2,9 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <style>
+            #game {
+                float: left;
+                width: 500 px;
+            }
+            #settings {
+                float: right;
+                width: 450 px;
+            }
+        </style>
     </head>
 
     <body>
+        <div id="game">
         <input type="file" id="deckUpload" name="deckUpload">
         <button id="confirmUpload" name="confirmUpload">Upload Deck</button>
         <br>
@@ -21,6 +32,10 @@
         <p id="feedback"></p>
         <br>
         <p id="testing"></p>
+        </div>
+        <div id="settings">
+            <h2>Settings</h2>
+        </div>
 
         <script>
             let deckFile;

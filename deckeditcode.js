@@ -1,3 +1,11 @@
+let deckFile;
+let deck;
+let deckNouns;
+let deckVerbs;
+let deckOtherWords;
+const confirmUpload = document.getElementById('confirmUpload');
+confirmUpload.addEventListener('click', uploadFile);
+let uploaded = false;
 let substantive = {
 }
 
@@ -18,6 +26,73 @@ let otherWordList = [];
 let nounSubmitButtons = [];
 let verbSubmitButtons = [];
 let otherWordSubmitButtons = [];
+
+async function uploadFile() {
+    if(uploaded === true){
+        alert('You have already uploaded a deck.');
+    }
+    else{
+        uploaded = true;
+        deckFile = document.getElementById('deckUpload').files;
+        deckName = deckFile[0].name;
+        let deckFileText = await deckFile[0].text();
+        deck = JSON.parse(deckFileText);
+        deckNouns = deck.nouns;
+        deckVerbs = deck.verbs;
+        deckOtherWords = deck.otherWords;
+        let numNouns = deckNouns.length;
+        if(numNouns !== 0) {
+            numNouns = numNouns -1;
+        }
+        let numVerbs = deckVerbs.length;
+        if(numVerbs !== 0) {
+            numVerbs = numVerbs -1;
+        }
+        let numOtherWords = deckOtherWords.length;
+        if(numOtherWords !== 0) {
+            numOtherWords = numOtherWords -1;
+        }
+        for(let i = 1; i <= numNouns; i++){
+            let currentNoun = deckNouns[i];
+            addNounTemplate();
+            loadNounSubmitButton();
+            document.getElementById('englishNoun' + i).value = currentNoun.englishWord;
+            document.getElementById('finnishNoun' + i).value = currentNoun.finnishWord;
+            document.getElementById('nomSing' + i).value = currentNoun.nomSing;
+            document.getElementById('nomPlu' + i).value = currentNoun.nomPlu;
+            document.getElementById('genSing' + i).value = currentNoun.genSing;
+            document.getElementById('genPlu' + i).value = currentNoun.genPlu;
+            document.getElementById('partSing' + i).value = currentNoun.partSing;
+            document.getElementById('partPlu' + i).value = currentNoun.partPlu;
+        }
+        for(let i = 1; i <= numVerbs; i++){
+            let currentVerb = deckVerbs[i];
+            addVerbTemplate();
+            loadVerbSubmitButton();
+            document.getElementById('englishVerb' + i).value = currentVerb.englishWord;
+            document.getElementById('finnishVerb' + i).value = currentVerb.finnishWord;
+            document.getElementById('minaPresPos' + i).value = currentVerb.minaPresPos;
+            document.getElementById('minaPresNeg' + i).value = currentVerb.minaPresNeg;
+            document.getElementById('sinaPresPos' + i).value = currentVerb.sinaPresPos;
+            document.getElementById('sinaPresNeg' + i).value = currentVerb.sinaPresNeg;
+            document.getElementById('hanPresPos' + i).value = currentVerb.hanPresPos;
+            document.getElementById('hanPresNeg' + i).value = currentVerb.hanPresNeg;
+            document.getElementById('mePresPos' + i).value = currentVerb.mePresPos;
+            document.getElementById('mePresNeg' + i).value = currentVerb.mePresNeg;
+            document.getElementById('tePresPos' + i).value = currentVerb.tePresPos;
+            document.getElementById('tePresNeg' + i).value = currentVerb.tePresNeg;
+            document.getElementById('hePresPos' + i).value = currentVerb.hePresPos;
+            document.getElementById('hePresNeg' + i).value = currentVerb.hePresNeg;
+        }
+        for(let i = 1; i <= numOtherWords; i++){
+            let currentOtherWord = deckOtherWords[i];
+            addOtherWordTemplate();
+            loadOtherWordSubmitButton();
+            document.getElementById('englishOtherWord' + i).value = currentOtherWord.englishWord;
+            document.getElementById('finnishOtherWord' + i).value = currentOtherWord.finnishWord;
+        }
+    }
+}
 
 function loadNounSubmitButton() {
     nounSubmitButtons[nounIndex] = document.querySelector('#noun' + nounIndex + 'Submit');
@@ -119,14 +194,6 @@ addNounButton.addEventListener('click', loadNounSubmitButton);
 addVerbButton.addEventListener('click', loadVerbSubmitButton);
 addOtherWordButton.addEventListener('click', loadOtherWordSubmitButton);
 
-deckNameSubmitButton.addEventListener('click', saveDeckName);
-saveDeckSubmitButton.addEventListener('click', saveDeckToFile);
-
-function saveDeckName() {
-    let deckNameField = document.getElementById("deckName");
-    deckName = deckNameField.value;
-}
-
 saveAllWordsButton.addEventListener('click', saveAllWords);
 function saveAllWords() {
     for(let saveAllNounsIndex = 1; saveAllNounsIndex <= nounIndex; saveAllNounsIndex++) {
@@ -140,94 +207,16 @@ function saveAllWords() {
     }
 }
 
+saveDeckSubmitButton.addEventListener('click', saveDeckToFile);
+
 function saveDeckToFile() {
-    if(deckName === '') {
-        alert('Please input a valid name for the deck')
-    }
-    else {
-        /*let nouns = JSON.stringify(nounList);
-        let verbs = JSON.stringify(verbList);
-        let otherWords = JSON.stringify(otherWordList);*/
-        let fullDeck = {'nouns': nounList, 'verbs': verbList, 'otherWords': otherWordList};
-        let fullDeckString = JSON.stringify(fullDeck);
-        let link = document.createElement('a');
-        link.download = deckName + ".json";
-        link.href = 'data:application/json,' + encodeURIComponent(fullDeckString);
-        link.click() 
-
-    }
+    /*let nouns = JSON.stringify(nounList);
+    let verbs = JSON.stringify(verbList);
+    let otherWords = JSON.stringify(otherWordList);*/
+    let fullDeck = {'nouns': nounList, 'verbs': verbList, 'otherWords': otherWordList};
+    let fullDeckString = JSON.stringify(fullDeck);
+    let link = document.createElement('a');
+    link.download = deckName;
+    link.href = 'data:application/json,' + encodeURIComponent(fullDeckString);
+    link.click() 
 }
-
-/*{   noun1 = Object.create(substantive); //no need to look at this
-    noun2 = Object.create(substantive);
-    noun3 = Object.create(substantive);
-    noun4 = Object.create(substantive);
-    noun5 = Object.create(substantive);
-    noun6 = Object.create(substantive);
-    noun7 = Object.create(substantive);
-    noun8 = Object.create(substantive);
-    noun9 = Object.create(substantive);
-    noun10 = Object.create(substantive);
-    noun11 = Object.create(substantive);
-    noun12 = Object.create(substantive);
-    noun13 = Object.create(substantive);
-    noun14 = Object.create(substantive);
-    noun15 = Object.create(substantive);
-    noun16 = Object.create(substantive);
-    noun17 = Object.create(substantive);
-    noun18 = Object.create(substantive);
-    noun19 = Object.create(substantive);
-    noun20 = Object.create(substantive);
-    noun21 = Object.create(substantive);
-    noun22 = Object.create(substantive);
-    noun23 = Object.create(substantive);
-    noun24 = Object.create(substantive);
-    noun25 = Object.create(substantive); 
-
-    nounList = ['the finnish language', noun1, noun2, noun3, noun4, noun5, noun6, noun7, noun8, noun9, noun10, noun11, noun12, noun13, noun14, noun15, noun16, noun17, noun18, noun19, noun20, noun21, noun22, noun23, noun24, noun25];
-
-}
-
-{   verb1 = Object.create(verb); //or this
-    verb2 = Object.create(verb);
-    verb3 = Object.create(verb);
-    verb4 = Object.create(verb);
-    verb5 = Object.create(verb);
-    verb6 = Object.create(verb);
-    verb7 = Object.create(verb);
-    verb8 = Object.create(verb);
-    verb9 = Object.create(verb);
-    verb10 = Object.create(verb);
-    verb11 = Object.create(verb);
-    verb12 = Object.create(verb);
-    verb13 = Object.create(verb);
-    verb14 = Object.create(verb);
-    verb15 = Object.create(verb);
-    verb16 = Object.create(verb);
-    verb17 = Object.create(verb);
-    verb18 = Object.create(verb);
-    verb19 = Object.create(verb);
-    verb20 = Object.create(verb);
-    verb21 = Object.create(verb);
-    verb22 = Object.create(verb);
-    verb23 = Object.create(verb);
-    verb24 = Object.create(verb);
-    verb25 = Object.create(verb); 
-
-    verbList = ['the finnish language', verb1, verb2, verb3, verb4, verb5, verb6, verb7, verb8, verb9, verb10, verb11, verb12, verb13, verb14, verb15, verb16, verb17, verb18, verb19, verb20, verb21, verb22, verb23, verb24, verb25];
-}
-
-{
-    otherWord1 = Object.create(otherWord);
-    otherWord2 = Object.create(otherWord);
-    otherWord3 = Object.create(otherWord);
-    otherWord4 = Object.create(otherWord);
-    otherWord5 = Object.create(otherWord);
-    otherWord6 = Object.create(otherWord);
-    otherWord7 = Object.create(otherWord);
-    otherWord8 = Object.create(otherWord);
-    otherWord9 = Object.create(otherWord);
-    otherWord10 = Object.create(otherWord);
-
-    otherWordList = ['the finnish language', otherWord1, otherWord2, otherWord3, otherWord4, otherWord5, otherWord6, otherWord7, otherWord8, otherWord9, otherWord10];
-} */
