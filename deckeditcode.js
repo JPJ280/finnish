@@ -83,6 +83,8 @@ async function uploadFile() {
             document.getElementById('tePresNeg' + i).value = currentVerb.tePresNeg;
             document.getElementById('hePresPos' + i).value = currentVerb.hePresPos;
             document.getElementById('hePresNeg' + i).value = currentVerb.hePresNeg;
+            document.getElementById('passPresPos' + i).value = currentVerb.passPresPos;
+            document.getElementById('passPresNeg' + i).value = currentVerb.passPresNeg;
         }
         for(let i = 1; i <= numOtherWords; i++){
             let currentOtherWord = deckOtherWords[i];
