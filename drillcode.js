@@ -5,12 +5,6 @@ function getRandomInt(max) {
     return(returnInt);
 }
 
-function holdingIt() {
-    if(holdIt === 1) {
-        setTimeout(holdingIt, 100);
-    }
-}
-
 let instruction = document.getElementById('instruction');
 let feedback = document.getElementById('feedback');
 let userAnswerField = document.getElementById('userAnswerField');
@@ -67,7 +61,7 @@ function questionsStart() {
             typePicked = 'verb';
         }
         else if(pickWord <= (numNouns + numVerbs + numOtherWords)) {
-            wordPicked = deckOtherwords[pickWord - (numNouns + numVerbs)];
+            wordPicked = deckOtherWords[pickWord - (numNouns + numVerbs)];
             typePicked = 'otherWord';
         }
 /*        else if(pickWord <= totalWords) {
