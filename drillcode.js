@@ -5,6 +5,9 @@ function getRandomInt(max) {
     return(returnInt);
 }
 
+const currentMaxNounForms = 5;
+const currentMaxVerbForms = 14;
+const currentMaxPronounForms = 0;
 let instruction = document.getElementById('instruction');
 let feedback = document.getElementById('feedback');
 let userAnswerField = document.getElementById('userAnswerField');
@@ -37,10 +40,43 @@ function questionsStart() {
     if(numNouns !== 0) {
         numNouns = numNouns -1;
     }
+    let nounPromptArray = [document.getElementById("nounCheck0").checked, document.getElementById("nounCheck1").checked, document.getElementById("nounCheck2").checked];
+    if(nounPromptArray[2]) {
+        nounDeclinePromptArray = createNounDeclinePromptArray();
+        if(nounDeclinePromptArray.includes(true)) {
+            nounDeclineChooseArray = createNounDeclineChooseArray(nounDeclinePromptArray);
+        }
+        else {
+            nounPromptArray[2] = false;
+        }
+    }
+    if(nounPromptArray.includes(true)) {
+        nounChooseArray = createNounChooseArray(nounPromptArray);
+    }
+    else {
+        numNouns = 0;
+    }
     let numVerbs = deckVerbs.length;
     if(numVerbs !== 0) {
         numVerbs = numVerbs -1;
     }
+    let verbPromptArray = [document.getElementById("verbCheck0").checked, document.getElementById("verbCheck1").checked, document.getElementById("verbCheck2").checked];
+    if(verbPromptArray[2]) {
+        verbConjPromptArray = createVerbConjPromptArray();
+        if(verbConjPromptArray.includes(true)) {
+            verbConjChooseArray = createVerbConjChooseArray(verbConjPromptArray);
+        }
+        else {
+            verbPromptArray[2] = false;
+        }
+    }
+    if(verbPromptArray.includes(true)) {
+        verbChooseArray = createVerbChooseArray(verbPromptArray);
+    }
+    else {
+        numVerbs = 0;
+    }
+
     let numOtherWords = deckOtherWords.length;
     if(numOtherWords !== 0) {
         numOtherWords = numOtherWords -1;
@@ -74,7 +110,8 @@ function questionsStart() {
         }
 
         if(typePicked === 'noun') {
-            questionType = getRandomInt(3);
+            questionRand = getRandomInt(nounChooseArray.length);
+            questionType = nounChooseArray[questionRand];
             switch (questionType) {
                 case 0:
                     instructions[wordIndex] = "Translate " + wordPicked.englishWord + " into Finnish";
@@ -85,26 +122,27 @@ function questionsStart() {
                     answer[wordIndex] = wordPicked.englishWord;
                     break;
                 case 2:
-                    let nounCaseNum = getRandomInt(5) + 1;
+                    let nounCaseRand = getRandomInt(nounDeclineChooseArray.length);
+                    let nounCaseNum = nounDeclineChooseArray[nounCaseRand];
                     let nounCase;
                     switch (nounCaseNum) {
                         case 1:
                             nounCase = 'genetiivi yksikkö'; 
                             answer[wordIndex] = wordPicked.genSing;
                             break;
-                        case 2:
+                        case 3:
                             nounCase = 'partitiivi yksikkö';
                             answer[wordIndex] = wordPicked.partSing;
                             break;
-                        case 3:
+                        case 0:
                             nounCase = 'nominatiivi monikko';
                             answer[wordIndex] = wordPicked.nomPlu;
                             break;
-                        case 4:
+                        case 2:
                             nounCase = 'genetiivi monikko';
                             answer[wordIndex] = wordPicked.genPlu;
                             break;
-                        case 5:
+                        case 4:
                             nounCase = 'partitiivi monikko';
                             answer[wordIndex] = wordPicked.partPlu;
                             break;
@@ -119,7 +157,8 @@ function questionsStart() {
             }
         }
         else if(typePicked === 'verb') { //verb
-            questionType = getRandomInt(3);
+            questionRand = getRandomInt(verbChooseArray.length);
+            questionType = verbChooseArray[questionRand];
             switch (questionType) {
                 case 0:
                     instructions[wordIndex] = "Translate " + wordPicked.englishWord + " into Finnish";
@@ -130,62 +169,63 @@ function questionsStart() {
                     answer[wordIndex] = wordPicked.englishWord;
                     break;
                 case 2:
-                    let verbCaseNum = getRandomInt(12) + 1;
+                    let verbCaseRand = getRandomInt(verbConjChooseArray.length);
+                    let verbCaseNum = verbConjChooseArray[verbCaseRand];
                     let verbCase;
                     switch(verbCaseNum) {
-                        case 1:
+                        case 0:
                             verbCase = 'minä preesens positiivinen';
                             answer[wordIndex] = wordPicked.minaPresPos;
                             break;
-                        case 2:
+                        case 1:
                             verbCase = 'sinä preesens positiivinen';
                             answer[wordIndex] = wordPicked.sinaPresPos;
                             break;
-                        case 3:
+                        case 2:
                             verbCase = 'hän preesens positiivinen';
                             answer[wordIndex] = wordPicked.hanPresPos;
                             break;  
-                        case 4:
+                        case 3:
                             verbCase = 'me preesens positiivinen';
                             answer[wordIndex] = wordPicked.mePresPos;
                             break;
-                        case 5:
+                        case 4:
                             verbCase = 'te preesens positiivinen';
                             answer[wordIndex] = wordPicked.tePresPos;
                             break;
-                        case 6:
+                        case 5:
                             verbCase = 'he preesens positiivinen';
                             answer[wordIndex] = wordPicked.hePresPos;
                             break;
-                        case 7:
+                        case 6:
                             verbCase = 'minä preesens negatiivinen';
                             answer[wordIndex] = wordPicked.minaPresNeg;
                             break;
-                        case 8:
+                        case 7:
                             verbCase = 'sinä preesens negatiivinen';
                             answer[wordIndex] = wordPicked.sinaPresNeg;
                             break;
-                        case 9:
+                        case 8:
                             verbCase = 'hän preesens negatiivinen';
                             answer[wordIndex] = wordPicked.hanPresNeg;
                             break;  
-                        case 10:
+                        case 9:
                             verbCase = 'me preesens negatiivinen';
                             answer[wordIndex] = wordPicked.mePresNeg;
                             break;
-                        case 11:
+                        case 10:
                             verbCase = 'te preesens negatiivinen';
                             answer[wordIndex] = wordPicked.tePresNeg;
                             break;
-                        case 12:
+                        case 11:
                             verbCase = 'he preesens negatiivinen';
                             answer[wordIndex] = wordPicked.hePresNeg;
                             break;
-                        case 13: 
+                        case 12: 
                             verbCase = 'pasiivi positiivinen';
                             answer[wordIndex] = wordPicked.passPresPos;
                             break;
-                        case 14:
+                        case 13:
                             verbCase = 'passiivi negatiivinen';
                             answer[wordIndex] = wordPicked.passPresNeg;
                             break;
@@ -215,6 +255,78 @@ function questionsStart() {
     }
     
     getAnswers();
+}
+
+function createNounChooseArray(nounPromptArray) {
+    let j = 0;
+    let nounChooseArray = [];
+    for(let i = 0; i < nounPromptArray.length; i++) {
+        if(nounPromptArray[i]) {
+            nounChooseArray[j] = i;
+            j++;
+        }
+    }
+    return nounChooseArray;
+}
+
+function createNounDeclinePromptArray() {
+    let nounDeclinePromptArray = [];
+    for(let i = 0; i < currentMaxNounForms; i++) {
+        nounDeclinePromptArray[i] = document.getElementById("nounDecCheck" + i).checked;
+    }
+    if(document.getElementById("nounDecCheck" + currentMaxNounForms) !== null) {
+        alert("If this is JP: \nYou forgot to update current max noun forms \n" +
+        "If this isn't JP: \nPlease email JP at @jepaulson2@wisc.edu and tell them they forgot to update current max noun forms");
+    }
+    return nounDeclinePromptArray;
+}
+
+function createNounDeclineChooseArray(nounDeclinePromptArray) {
+    let nounDeclineChooseArray = [];
+    let j = 0;
+    for(let i = 0; i < nounDeclinePromptArray.length; i++) {
+        if(nounDeclinePromptArray[i]) {
+            nounDeclineChooseArray[j] = i;
+            j++;
+        }
+    }
+    return nounDeclineChooseArray;
+}
+
+function createVerbChooseArray(verbPromptArray) {
+    let j = 0;
+    let verbChooseArray = [];
+    for(let i = 0; i < verbPromptArray.length; i++) {
+        if(verbPromptArray[i]) {
+            verbChooseArray[j] = i;
+            j++;
+        }
+    }
+    return verbChooseArray;
+}
+
+function createVerbConjPromptArray() {
+    let verbConjPromptArray = [];
+    for(let i = 0; i < currentMaxVerbForms; i++) {
+        verbConjPromptArray[i] = document.getElementById("verbConjCheck" + i).checked;
+    }
+    if(document.getElementById("verbConjCheck" + currentMaxVerbForms) !== null) {
+        alert("If this is JP: \nYou forgot to update current max verb forms \n" +
+        "If this isn't JP: \nPlease email JP at @jepaulson2@wisc.edu and tell them they forgot to update current max noun forms");
+    }
+    return verbConjPromptArray;
+}
+
+function createVerbConjChooseArray(verbConjPromptArray) {
+    let verbConjChooseArray = [];
+    let j = 0;
+    for(let i = 0; i < verbConjPromptArray.length; i++) {
+        if(verbConjPromptArray[i]) {
+            verbConjChooseArray[j] = i;
+            j++;
+        }
+    }
+    return verbConjChooseArray;
 }
 
 function getAnswers() {
