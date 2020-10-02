@@ -145,10 +145,9 @@ function saveDeckToFile() {
         alert('Please input a valid name for the deck')
     }
     else {
-        /*let nouns = JSON.stringify(nounList);
-        let verbs = JSON.stringify(verbList);
-        let otherWords = JSON.stringify(otherWordList);*/
-        let fullDeck = {'nouns': nounList, 'verbs': verbList, 'otherWords': otherWordList};
+        saveAllWordsButton.click();
+        let deckConfig = getDeckConfig();
+        let fullDeck = {'nouns': nounList, 'verbs': verbList, 'otherWords': otherWordList, 'deckConfig':deckConfig};
         let fullDeckString = JSON.stringify(fullDeck);
         let link = document.createElement('a');
         link.download = deckName + ".json";
@@ -156,6 +155,22 @@ function saveDeckToFile() {
         link.click() 
 
     }
+}
+
+function getDeckConfig() {
+    let deckNounChecks = [document.getElementById("nounCheck0").checked, document.getElementById("nounCheck1").checked, document.getElementById("nounCheck2").checked];
+    let deckDecChecks = [];
+    for(let i = 0; i < currentMaxNounForms; i++) {
+        deckDecChecks[i] = document.getElementById("nounDecCheck" + i).checked;    
+    }
+    let deckVerbChecks = [document.getElementById("verbCheck0").checked, document.getElementById("verbCheck1").checked, document.getElementById("verbCheck2").checked,];
+    let deckConjChecks = [];
+    for(let i = 0; i < currentMaxVerbForms; i++) {
+        deckConjChecks[i] = document.getElementById("verbConjCheck" + i).checked;
+    }
+    let deckOtherWordChecks = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
+    let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks};
+    return deckConfig;
 }
 
 /*{   noun1 = Object.create(substantive); //no need to look at this

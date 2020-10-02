@@ -6,3 +6,54 @@ html {
 td, th {
     border: 1px solid #777777;
 }
+
+#page {
+    display: flex;
+    flex-direction: row;
+}
+#game {
+    float: left;
+    width: 400px;
+    padding: 0 20px 0 20px;
+    flex: 4;
+}
+#settings {
+    float: left;
+    width: 300px;
+    padding: 0 20px 0 20px;
+    flex: 3;
+}
+.mainHeader {
+    margin-top: 0px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+.secondHeader {
+    margin-top: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.gameHead {
+    margin-bottom: 20px;
+    border: 5px solid #111199;
+    border-radius: 5px;
+    padding: 8px;
+}
+.settingsHead {
+    padding: 13px;
+    border: 5px solid #111199;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.blueRoundBox {
+    border: 5px solid #111199;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 8px;
+}
+form {
+    overflow: auto;
+}
+.wordList {
+    width: 60vw;
+}

@@ -6,7 +6,7 @@ function getRandomInt(max) {
 }
 
 const currentMaxNounForms = 5;
-const currentMaxVerbForms = 14;
+const currentMaxVerbForms = 28;
 const currentMaxPronounForms = 0;
 let instruction = document.getElementById('instruction');
 let feedback = document.getElementById('feedback');
@@ -80,6 +80,13 @@ function questionsStart() {
     let numOtherWords = deckOtherWords.length;
     if(numOtherWords !== 0) {
         numOtherWords = numOtherWords -1;
+    }
+    let otherWordPromptArray = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
+    if(otherWordPromptArray.includes(true)) {
+        otherWordChooseArray = createOtherWordChooseArray(otherWordPromptArray);
+    }
+    else {
+        numOtherWords = 0;
     }
     let totalWords = numNouns + numVerbs + numOtherWords; //+numPronouns;
     if(totalWords === 0) {
@@ -198,40 +205,96 @@ function questionsStart() {
                             answer[wordIndex] = wordPicked.hePresPos;
                             break;
                         case 6:
+                            verbCase = 'passiivi preesens positiivinen';
+                            answer[wordIndex] = wordPicked.passPresPos;
+                            break;
+                        case 7:
                             verbCase = 'minä preesens negatiivinen';
                             answer[wordIndex] = wordPicked.minaPresNeg;
                             break;
-                        case 7:
-                            verbCase = 'sinä preesens negatiivinen';
-                            answer[wordIndex] = wordPicked.sinaPresNeg;
-                            break;
                         case 8:
-                            verbCase = 'hän preesens negatiivinen';
-                            answer[wordIndex] = wordPicked.hanPresNeg;
+                            verbCase = 'sinä preesens negatiivinen';
+                            answer[wordIndex] = wordPicked.sanPresNeg;
                             break;  
                         case 9:
+                            verbCase = 'hän preesens negatiivinen';
+                            answer[wordIndex] = wordPicked.hanPresNeg;
+                            break;
+                        case 10:
                             verbCase = 'me preesens negatiivinen';
                             answer[wordIndex] = wordPicked.mePresNeg;
                             break;
-                        case 10:
+                        case 11:
                             verbCase = 'te preesens negatiivinen';
                             answer[wordIndex] = wordPicked.tePresNeg;
                             break;
-                        case 11:
-                            verbCase = 'he preesens negatiivinen';
-                            answer[wordIndex] = wordPicked.hePresNeg;
-                            break;
                         case 12: 
-                            verbCase = 'pasiivi positiivinen';
-                            answer[wordIndex] = wordPicked.passPresPos;
+                            verbCase = 'he preesens negatiivinen';
+                            answer[wordIndex] = wordPicked.hePresPos;
                             break;
                         case 13:
-                            verbCase = 'passiivi negatiivinen';
+                            verbCase = 'passiivi preesens negatiivinen';
                             answer[wordIndex] = wordPicked.passPresNeg;
+                            break;
+                        case 14:
+                            verbCase = 'minä imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.minaImpPos;
+                            break;
+                        case 15:
+                            verbCase = 'minä imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.minaImpNeg;
+                            break;
+                        case 16:
+                            verbCase = 'sinä imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.sinaImpPos;
+                            break;
+                        case 17:
+                            verbCase = 'sinä imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.sinaImpNeg;
+                            break;
+                        case 18:
+                            verbCase = 'hän imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.hanImpPos;
+                            break;
+                        case 19:
+                            verbCase = 'hän imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.hanImpNeg;
+                            break;     
+                        case 20:
+                            verbCase = 'me imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.meImpPos;
+                            break;
+                        case 21:
+                            verbCase = 'me imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.meImpNeg;
+                            break;                            
+                        case 22:
+                            verbCase = 'te imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.teImpPos;
+                            break;
+                        case 23:
+                            verbCase = 'te imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.teImpNeg;
+                            break;                            
+                        case 24:
+                            verbCase = 'he imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.heImpPos;
+                            break;
+                        case 25:
+                            verbCase = 'he imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.heImpNeg;
+                            break;                            
+                        case 26:
+                            verbCase = 'passiivi imperfekti positiivinen';
+                            answer[wordIndex] = wordPicked.passImpPos;
+                            break;
+                        case 27:
+                            verbCase = 'passiivi imperfekti negatiivinen';
+                            answer[wordIndex] = wordPicked.passImpNeg;
                             break;
                     }
                     instructions[wordIndex] = "Conjugate: " + wordPicked.finnishWord + ", " + verbCase;
-                    if(answer[wordIndex] === '') {
+                    if(answer[wordIndex] === '' || answer[wordIndex] === undefined) {
                         instructions[wordIndex] = 'skip';
                     }
             }
@@ -329,18 +392,33 @@ function createVerbConjChooseArray(verbConjPromptArray) {
     return verbConjChooseArray;
 }
 
+function createOtherWordChooseArray(otherWordPromptArray) {
+    let j = 0;
+    let otherWordChooseArray = [];
+    for(let i = 0; i < otherWordPromptArray.length; i++) {
+        if(otherWordPromptArray[i]) {
+            otherWordChooseArray[j] = i;
+            j++;
+        }
+    }
+    return nounChooseArray;
+}
+
 function getAnswers() {
     answerIndex = 0;
+    while(instructions[answerIndex] === 'skip') {
+        answerIndex += 1;
+    }
     instruction.textContent = instructions[answerIndex]
     userCheckButton.addEventListener('click', callAnswers);
 }
 
 function callAnswers() {
+    checkAnswer();
+    answerIndex += 1;
     while(instructions[answerIndex] === 'skip') {
         answerIndex += 1;
     }
-    checkAnswer();
-    answerIndex += 1;
     instruction.textContent = instructions[answerIndex]
 }
 

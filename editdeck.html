@@ -33,10 +33,21 @@
                 left: -10000px;
                 overflow: hidden;
             }
+            
         </style>
+        <link rel="stylesheet" href="nightmodestyle.css">
+        <link rel="stylesheet" href="navigation.css">
     </head>
 
     <body>
+        <nav>
+            <ul class="navigation">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="createnewdeck.html">Create a New Deck</a></li>
+                <li><a href="usedeck.html">Use a Deck</a></li>
+                <li><a href="editdeck.html">Edit a Deck</a></li>
+            </ul>
+        </nav>
         <input type="file" id="deckUpload" name="deckUpload">
         <button id="confirmUpload" name="confirmUpload">Upload Deck</button>
         <br>
@@ -47,95 +58,242 @@
         <input type="submit" value="Add Other" class="addOtherWordButton">
         <br>
         <input type="submit" value="Save All" id="saveAllWordsButton">
-        <section class="wordList">
+        <div id="page">
+            <div>
+                <section class="wordList">
+                    <div class="blueRoundBox">
+                        <h1 class="mainHeader">Word List</h1>
+                    </div>
+                    <form class="noun" id="noun0">
+                        <label for="English">
+                            Englanti: <input type="text" id="englishNoun0"></label>
+                        <label for="Finnish">
+                            Suomi: <input type="text" id="finnishNoun0"></label>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Yksikkö</th>
+                                <th>Monikko</th>
+                            </tr>
+                            <tr>
+                                <th>Nominatiivi</th>
+                                <td><input type="text" id="nomSing0" name="nomSing"></td>
+                                <td><input type="text" id="nomPlu0" name="nomPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Genetiivi</th>
+                                <td><input type="text" id="genSing0" name="genSing"></td>
+                                <td><input type="text" id="genPlu0" name="genPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Partitiivi</th>
+                                <td><input type="text" id="partSing0" name="partSing"></td>
+                                <td><input type="text" id="partPlu0" name="partPlu"></td>
+                            </tr>
+                        </table>
+                        <input type="button" id="noun0Submit" value="Save">
+                    </form>
 
-        <form class="noun" id="noun0">
-            <label for="English">
-                Englanti: <input type="text" id="englishNoun0"></label>
-            <label for="Finnish">
-                Suomi: <input type="text" id="finnishNoun0"></label>
-            <table>
-                <tr>
-                    <td></td>
-                    <th>Yksikkö</th>
-                    <th>Monikko</th>
-                </tr>
-                <tr>
-                    <th>Nominatiivi</th>
-                    <td><input type="text" id="nomSing0" name="nomSing"></td>
-                    <td><input type="text" id="nomPlu0" name="nomPlu"></td>
-                </tr>
-                <tr>
-                    <th>Genetiivi</th>
-                    <td><input type="text" id="genSing0" name="genSing"></td>
-                    <td><input type="text" id="genPlu0" name="genPlu"></td>
-                </tr>
-                <tr>
-                    <th>Partitiivi</th>
-                    <td><input type="text" id="partSing0" name="partSing"></td>
-                    <td><input type="text" id="partPlu0" name="partPlu"></td>
-                </tr>
-            </table>
-            <input type="button" id="noun0Submit" value="Save">
-        </form>
+                    <form class="verb" id="verb0">
+                        <label for="English">
+                            Englanti: <input type="text" id="englishVerb0"></label>
+                        <label for="Finnish">
+                            Suomi (infinitiivi): <input type="text" id="finnishVerb0"></label>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Preesens Positiivinen</th>
+                                <th>Preesens Negatiivinen</th>
+                            </tr>
+                            <tr>
+                                <th>Minä</th>
+                                <td><input type="text" id="minaPresPos0"></td>
+                                <td><input type="text" id="minaPresNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>Sinä</th>
+                                <td><input type="text" id="sinaPresPos0"></td>
+                                <td><input type="text" id="sinaPresNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>Hän</th>
+                                <td><input type="text" id="hanPresPos0"></td>
+                                <td><input type="text" id="hanPresNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>Me</th>
+                                <td><input type="text" id="mePresPos0"></td>
+                                <td><input type="text" id="mePresNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>Te</th>
+                                <td><input type="text" id="tePresPos0"></td>
+                                <td><input type="text" id="tePResNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>He</th>
+                                <td><input type="text" id="hePresPos0"></td>
+                                <td><input type="text" id="hePresNeg0"></td>
+                            </tr>
+                            <tr>
+                                <th>Passiivi</th>
+                                <td><input type="text" id="passPresPos0"></td>
+                                <td><input type="text" id="passPresNeg0"></td>
+                            </tr>
+                        </table>
+                        <input type="button" value="Save">
+                    </form>
+                    <form id="otherWord0">
+                        <label for="English">
+                            Englanti: <input type="text" id="englishOtherWord0"></label>
+                        <label for="Finnish">
+                            Suomi (infinitiivi): <input type="text" id="finnishOtherWord0"></label>
+                        <input type="button" value="Save">
+                    </form>
+                </section>
+            </div>
+            <div id="settings">
+                <div class="blueRoundBox">
+                    <h1 class="mainHeader">Deck Settings</h1>
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Number of Cards:</h2>
+                    <input type="text" id="numCardsField" placeholder="Default 20">
+                    <h2 class="secondHeader">Presets:</h2>
+                    <button type="button" id="standardPresetButton">Standard</button>
+                    <button type="button" id="basicPresetButton">Basic</button>
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Substantives</h2>
+                    <br>
+                    <label for="EngToFinNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck1">Translate Into English
+                    </label>
+                    <br>
+                    <label for="DeclineNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck2">Decline Finnish Words
+                    </label>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Yksikkö</th>
+                                <th>Monikko</th>
+                            </tr>
+                            <tr>
+                                <th>Nominatiivi</th>
+                                <td></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck0"></td>
+                            </tr>
+                            <tr>
+                                <th>Genetiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck2"></td>
+                            </tr>
+                            <tr>
+                                <th>Partitiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck4"></td>
+                            </tr>
 
-        <form class="verb" id="verb0">
-            <label for="English">
-                Englanti: <input type="text" id="englishVerb0"></label>
-            <label for="Finnish">
-                Suomi (infinitiivi): <input type="text" id="finnishVerb0"></label>
-            <table>
-                <tr>
-                    <td></td>
-                    <th>Preesens Positiivinen</th>
-                    <th>Preesens Negatiivinen</th>
-                </tr>
-                <tr>
-                    <th>Minä</th>
-                    <td><input type="text" id="minaPresPos0"></td>
-                    <td><input type="text" id="minaPresNeg0"></td>
-                </tr>
-                <tr>
-                    <th>Sinä</th>
-                    <td><input type="text" id="sinaPresPos0"></td>
-                    <td><input type="text" id="sinaPresNeg0"></td>
-                </tr>
-                <tr>
-                    <th>Hän</th>
-                    <td><input type="text" id="hanPresPos0"></td>
-                    <td><input type="text" id="hanPresNeg0"></td>
-                </tr>
-                <tr>
-                    <th>Me</th>
-                    <td><input type="text" id="mePresPos0"></td>
-                    <td><input type="text" id="mePresNeg0"></td>
-                </tr>
-                <tr>
-                    <th>Te</th>
-                    <td><input type="text" id="tePresPos0"></td>
-                    <td><input type="text" id="tePResNeg0"></td>
-                </tr>
-                <tr>
-                    <th>He</th>
-                    <td><input type="text" id="hePresPos0"></td>
-                    <td><input type="text" id="hePresNeg0"></td>
-                </tr>
-                <tr>
-                    <th>Passiivi</th>
-                    <td><input type="text" id="passPresPos0"></td>
-                    <td><input type="text" id="passPresNeg0"></td>
-                </tr>
-            </table>
-            <input type="button" value="Save">
-        </form>
-        <form id="otherWord0">
-            <label for="English">
-                Englanti: <input type="text" id="englishOtherWord0"></label>
-            <label for="Finnish">
-                Suomi (infinitiivi): <input type="text" id="finnishOtherWord0"></label>
-            <input type="button" value="Save">
-        </form>
-        </section>
+                        </table>
+                    </form>
+
+
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Verbs</h2>
+                    <br>
+                    <label for="EngToFinVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck1">Translate Into English
+                    </label>
+                    <br>
+                    <label for="ConjugateVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck2">Conjugate Finnish Verbs
+                    </label>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Preesens Positiivinen</th>
+                                <th>Preesens Negatiivinen</th>
+                                <th>Imperfekti Positiivinen</th>
+                                <th>Imperfekti Negatiivinen</th>
+                            </tr>
+                            <tr>
+                                <th>Minä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck0"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck7"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck14"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck21"></td>
+                            </tr>
+                            <tr>
+                                <th>Sinä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck8"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck15"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck22"></td>
+                            </tr>
+                            <tr>
+                                <th>Hän</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck2"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck9"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck16"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck23"></td>
+                            </tr>
+                            <tr>
+                                <th>Me</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck10"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck17"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck24"></td>
+                            </tr>
+                            <tr>
+                                <th>Te</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck4"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck11"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck18"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck25"></td>
+                            </tr>
+                            <tr>
+                                <th>He</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck5"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck12"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck19"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck26"></td>
+                            </tr>
+                            <tr>
+                                <th>Passiivi</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck6"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck13"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck20"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck27"></td>
+                            </tr>
+
+                        </table>
+                    </form>
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Other Words</h2>
+                    <br>
+                    <label for="EngToFinOtherWord">
+                        <input type="checkbox" checked="checked" id="otherWordCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngOtherWord">
+                        <input type="checkbox" checked="checked" id="otherWordCheck1">Translate Into English
+                    </label>
+                </div>
+            </div>
+        </div>
         <script>
 
             const addNounButton = document.querySelector('.addNounButton');
@@ -264,9 +422,12 @@
             addVerbButton.addEventListener('click', addVerbTemplate);        
             addOtherWordButton.addEventListener('click', addOtherWordTemplate);  
 
+            const currentMaxNounForms = 5;
+            const currentMaxVerbForms = 28;
 
         </script>
         <!--<script src="collect-word.js" defer></script>-->
         <script src="deckeditcode.js" defer></script>
+        <script src="usedecksettings.js"></script>
     </body>
 </html>

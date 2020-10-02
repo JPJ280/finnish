@@ -47,6 +47,9 @@
                 margin-bottom: 20px;
                 padding: 8px;
             }
+            form {
+                overflow: auto;
+            }
         </style>
         <script src="nightmode.js" defer></script>
         <link rel="stylesheet" href="navigation.css">
@@ -58,8 +61,8 @@
             <ul class="navigation">
                 <li><a href="index.html">Home Page</a></li>
                 <li><a href="createnewdeck.html">Create a New Deck</a></li>
+                <li><a href="usedeck.html">Use a Deck</a></li>
                 <li><a href="editdeck.html">Edit a Deck</a></li>
-                <input type="button" value="Night Mode" id="nightModeButton"></input>
             </ul>
         </nav>
         <div id="page">
@@ -86,6 +89,13 @@
             <div id="settings">
                 <div class="settingsHead"><h1 class="secondHeader">Settings</h1></div>
                 <div class="blueRoundBox">
+                    <h2 class="secondHeader">Number of Cards:</h2>
+                    <input type="text" id="numCardsField" placeholder="Default 20">
+                    <h2 class="secondHeader">Presets:</h2>
+                    <button type="button" id="standardPresetButton">Standard</button>
+                    <button type="button" id="basicPresetButton">Basic</button>
+                </div>
+                <div class="blueRoundBox">
                     <h2 class="secondHeader">Substantives</h2>
                     <br>
                     <label for="EngToFinNoun">
@@ -99,29 +109,31 @@
                     <label for="DeclineNoun">
                         <input type="checkbox" checked="checked" id="nounCheck2">Decline Finnish Words
                     </label>
-                    <table>
-                        <tr>
-                            <td></td>
-                            <th>Yksikkö</th>
-                            <th>Monikko</th>
-                        </tr>
-                        <tr>
-                            <th>Nominatiivi</th>
-                            <td></td>
-                            <td><input checked="checked" type="checkbox" id="nounDecCheck0"></td>
-                        </tr>
-                        <tr>
-                            <th>Genetiivi</th>
-                            <td><input checked="checked" type="checkbox" id="nounDecCheck1"></td>
-                            <td><input checked="checked" type="checkbox" id="nounDecCheck2"></td>
-                        </tr>
-                        <tr>
-                            <th>Partitiivi</th>
-                            <td><input checked="checked" type="checkbox" id="nounDecCheck3"></td>
-                            <td><input checked="checked" type="checkbox" id="nounDecCheck4"></td>
-                        </tr>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Yksikkö</th>
+                                <th>Monikko</th>
+                            </tr>
+                            <tr>
+                                <th>Nominatiivi</th>
+                                <td></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck0"></td>
+                            </tr>
+                            <tr>
+                                <th>Genetiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck2"></td>
+                            </tr>
+                            <tr>
+                                <th>Partitiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck4"></td>
+                            </tr>
 
-                    </table>
+                        </table>
+                    </form>
 
 
                 </div>
@@ -139,49 +151,67 @@
                     <label for="ConjugateVerb">
                         <input type="checkbox" checked="checked" id="verbCheck2">Conjugate Finnish Verbs
                     </label>
-                    <table>
-                        <tr>
-                            <td></td>
-                            <th>Preesens Positiivinen</th>
-                            <th>Preesens Negatiivinen</th>
-                        </tr>
-                        <tr>
-                            <th>Minä</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck0"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck7"></td>
-                        </tr>
-                        <tr>
-                            <th>Sinä</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck1"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck8"></td>
-                        </tr>
-                        <tr>
-                            <th>Hän</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck2"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck9"></td>
-                        </tr>
-                        <tr>
-                            <th>Me</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck3"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck10"></td>
-                        </tr>
-                        <tr>
-                            <th>Te</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck4"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck11"></td>
-                        </tr>
-                        <tr>
-                            <th>He</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck5"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck12"></td>
-                        </tr>
-                        <tr>
-                            <th>Passiivi</th>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck6"></td>
-                            <td><input checked="checked" type="checkbox" id="verbConjCheck13"></td>
-                        </tr>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Preesens Positiivinen</th>
+                                <th>Preesens Negatiivinen</th>
+                                <th>Imperfekti Positiivinen</th>
+                                <th>Imperfekti Negatiivinen</th>
+                            </tr>
+                            <tr>
+                                <th>Minä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck0"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck7"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck14"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck21"></td>
+                            </tr>
+                            <tr>
+                                <th>Sinä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck8"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck15"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck22"></td>
+                            </tr>
+                            <tr>
+                                <th>Hän</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck2"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck9"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck16"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck23"></td>
+                            </tr>
+                            <tr>
+                                <th>Me</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck10"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck17"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck24"></td>
+                            </tr>
+                            <tr>
+                                <th>Te</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck4"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck11"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck18"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck25"></td>
+                            </tr>
+                            <tr>
+                                <th>He</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck5"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck12"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck19"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck26"></td>
+                            </tr>
+                            <tr>
+                                <th>Passiivi</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck6"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck13"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck20"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck27"></td>
+                            </tr>
 
-                    </table>
+                        </table>
+                    </form>
                 </div>
                 <div class="blueRoundBox">
                     <h2 class="secondHeader">Other Words</h2>
@@ -204,6 +234,7 @@
             let deckNouns;
             let deckVerbs;
             let deckOtherWords;
+            let deckConfig;
             let startButton = document.getElementById('start');
             const confirmUpload = document.getElementById('confirmUpload');
             confirmUpload.addEventListener('click', uploadFile);
@@ -216,11 +247,14 @@
                 deckVerbs = deck.verbs;
                 deckOtherWords = deck.otherWords;
                 deckPronouns = deck.pronouns;
+                deckConfig = deck.deckConfig;
+                useSettings(deckConfig);
             }
 
 
         </script>
         <script src="drillcode.js" defer></script>
+        <script src="usedecksettings.js"></script>
     </body>
 
 </html>
