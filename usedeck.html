@@ -92,8 +92,10 @@
                     <h2 class="secondHeader">Number of Cards:</h2>
                     <input type="text" id="numCardsField" placeholder="Default 20">
                     <h2 class="secondHeader">Presets:</h2>
+                    <button type="button" id="deckDefaultButton">Deck Default</button>
                     <button type="button" id="standardPresetButton">Standard</button>
                     <button type="button" id="basicPresetButton">Basic</button>
+                    <button type="button" id="allPresetButton">All Active</button>
                 </div>
                 <div class="blueRoundBox">
                     <h2 class="secondHeader">Substantives</h2>
@@ -236,6 +238,7 @@
             let deckOtherWords;
             let deckConfig;
             let startButton = document.getElementById('start');
+            const numCardsField = document.getElementById('numCardsField');
             const confirmUpload = document.getElementById('confirmUpload');
             confirmUpload.addEventListener('click', uploadFile);
 
@@ -249,6 +252,7 @@
                 deckPronouns = deck.pronouns;
                 deckConfig = deck.deckConfig;
                 useSettings(deckConfig);
+                numCardsField.value = deckConfig.numCards;
             }
 
 

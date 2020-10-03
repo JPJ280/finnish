@@ -42,6 +42,7 @@ async function uploadFile() {
         deckOtherWords = deck.otherWords;
         deckConfig = deck.deckConfig;
         useSettings(deckConfig);
+        numCardsField.value = deckConfig.numCards;
         let numNouns = deckNouns.length;
         if(numNouns !== 0) {
             numNouns = numNouns -1;
@@ -236,6 +237,7 @@ function getDeckConfig() {
         deckConjChecks[i] = document.getElementById("verbConjCheck" + i).checked;
     }
     let deckOtherWordChecks = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
-    let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks};
+    let numCards = (Number.isInteger(numCardsField.value) && numCardsField.value > 0) ? numCardsField.value : "";
+    let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks, 'numCards':numCards};
     return deckConfig;
 }

@@ -93,7 +93,9 @@ function questionsStart() {
         alert('Invalid deck')
         return;
     }
-    for (let wordIndex = 0; wordIndex < 10; wordIndex++) {
+    let numCardsFieldValue = Number(numCardsField.value);
+    let numCards = (Number.isInteger(numCardsFieldValue) && numCardsFieldValue > 0) ? numCardsFieldValue : 20;
+    for (let wordIndex = 0; wordIndex < numCards; wordIndex++) {
         let pickWord = getRandomInt(totalWords) + 1;
         if(pickWord <= numNouns) {
             wordPicked = deckNouns[pickWord];
