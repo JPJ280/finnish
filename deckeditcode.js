@@ -41,8 +41,10 @@ async function uploadFile() {
         deckVerbs = deck.verbs;
         deckOtherWords = deck.otherWords;
         deckConfig = deck.deckConfig;
-        useSettings(deckConfig);
-        numCardsField.value = deckConfig.numCards;
+        if(deckConfig !== undefined) {
+           useSettings(deckConfig);
+           numCardsField.value = deckConfig.numCards;
+        }
         let numNouns = deckNouns.length;
         if(numNouns !== 0) {
             numNouns = numNouns -1;
@@ -88,6 +90,22 @@ async function uploadFile() {
             document.getElementById('hePresNeg' + i).value = currentVerb.hePresNeg;
             document.getElementById('passPresPos' + i).value = currentVerb.passPresPos;
             document.getElementById('passPresNeg' + i).value = currentVerb.passPresNeg;
+            if(currentVerb.minaImpPos !== undefined) {
+                document.getElementById('minaImpPos' + i).value = currentVerb.minaImpPos;
+                document.getElementById('minaImpNeg' + i).value = currentVerb.minaImpNeg;
+                document.getElementById('sinaImpPos' + i).value = currentVerb.sinaImpPos;
+                document.getElementById('sinaImpNeg' + i).value = currentVerb.sinaImpNeg;
+                document.getElementById('hanImpPos' + i).value = currentVerb.hanImpPos;
+                document.getElementById('hanImpNeg' + i).value = currentVerb.hanImpNeg;
+                document.getElementById('meImpPos' + i).value = currentVerb.meImpPos;
+                document.getElementById('meImpNeg' + i).value = currentVerb.meImpNeg;
+                document.getElementById('teImpPos' + i).value = currentVerb.teImpPos;
+                document.getElementById('teImpNeg' + i).value = currentVerb.teImpNeg;
+                document.getElementById('heImpPos' + i).value = currentVerb.heImpPos;
+                document.getElementById('heImpNeg' + i).value = currentVerb.heImpNeg;
+                document.getElementById('passImpPos' + i).value = currentVerb.passImpPos;
+                document.getElementById('passImpNeg' + i).value = currentVerb.passImpNeg;            
+            }
         }
         for(let i = 1; i <= numOtherWords; i++){
             let currentOtherWord = deckOtherWords[i];
@@ -180,6 +198,20 @@ function saveVerb(verbSaveIndex) {
     verbToSave.passPresPos = passPresPosField.value;
     let passPresNegField = document.getElementById("passPresNeg" + verbSaveIndex);
     verbToSave.passPresNeg = passPresNegField.value;
+    verbToSave.minaImpPos = document.getElementById("minaImpPos" + verbSaveIndex).value;
+    verbToSave.minaImpNeg = document.getElementById("minaImpNeg" + verbSaveIndex).value;
+    verbToSave.sinaImpPos = document.getElementById("sinaImpPos" + verbSaveIndex).value;
+    verbToSave.sinaImpNeg = document.getElementById("sinaImpNeg" + verbSaveIndex).value;
+    verbToSave.hanImpPos = document.getElementById("hanImpPos" + verbSaveIndex).value;
+    verbToSave.hanImpNeg = document.getElementById("hanImpNeg" + verbSaveIndex).value;
+    verbToSave.meImpPos = document.getElementById("meImpPos" + verbSaveIndex).value;
+    verbToSave.meImpNeg = document.getElementById("meImpNeg" + verbSaveIndex).value;
+    verbToSave.teImpPos = document.getElementById("teImpPos" + verbSaveIndex).value;
+    verbToSave.teImpNeg = document.getElementById("teImpNeg" + verbSaveIndex).value;
+    verbToSave.heImpPos = document.getElementById("heImpPos" + verbSaveIndex).value;
+    verbToSave.heImpNeg = document.getElementById("heImpNeg" + verbSaveIndex).value;
+    verbToSave.passImpPos = document.getElementById("passImpPos" + verbSaveIndex).value;
+    verbToSave.passImpNeg = document.getElementById("passImpNeg" + verbSaveIndex).value;
 
 
 
@@ -237,7 +269,8 @@ function getDeckConfig() {
         deckConjChecks[i] = document.getElementById("verbConjCheck" + i).checked;
     }
     let deckOtherWordChecks = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
-    let numCards = (Number.isInteger(numCardsField.value) && numCardsField.value > 0) ? numCardsField.value : "";
+    let numCardsFieldValue = Number(numCardsField.value);
+    let numCards = (Number.isInteger(numCardsFieldValue) && numCardsFieldValue > 0) ? numCardsFieldValue : "";
     let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks, 'numCards':numCards};
     return deckConfig;
 }

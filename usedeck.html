@@ -251,8 +251,10 @@
                 deckOtherWords = deck.otherWords;
                 deckPronouns = deck.pronouns;
                 deckConfig = deck.deckConfig;
-                useSettings(deckConfig);
-                numCardsField.value = deckConfig.numCards;
+                if(deckConfig !== undefined) {
+                    useSettings(deckConfig);
+                    numCardsField.value = deckConfig.numCards;
+                }
             }
 
 

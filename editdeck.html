@@ -99,49 +99,65 @@
                             Englanti: <input type="text" id="englishVerb0"></label>
                         <label for="Finnish">
                             Suomi (infinitiivi): <input type="text" id="finnishVerb0"></label>
-                        <table>
-                            <tr>
-                                <td></td>
-                                <th>Preesens Positiivinen</th>
-                                <th>Preesens Negatiivinen</th>
-                            </tr>
-                            <tr>
-                                <th>Minä</th>
-                                <td><input type="text" id="minaPresPos0"></td>
-                                <td><input type="text" id="minaPresNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>Sinä</th>
-                                <td><input type="text" id="sinaPresPos0"></td>
-                                <td><input type="text" id="sinaPresNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>Hän</th>
-                                <td><input type="text" id="hanPresPos0"></td>
-                                <td><input type="text" id="hanPresNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>Me</th>
-                                <td><input type="text" id="mePresPos0"></td>
-                                <td><input type="text" id="mePresNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>Te</th>
-                                <td><input type="text" id="tePresPos0"></td>
-                                <td><input type="text" id="tePResNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>He</th>
-                                <td><input type="text" id="hePresPos0"></td>
-                                <td><input type="text" id="hePresNeg0"></td>
-                            </tr>
-                            <tr>
-                                <th>Passiivi</th>
-                                <td><input type="text" id="passPresPos0"></td>
-                                <td><input type="text" id="passPresNeg0"></td>
-                            </tr>
-                        </table>
-                        <input type="button" value="Save">
+                            <table>
+                                <tr>
+                                    <td></td>
+                                    <th>Preesens Positiivinen</th>
+                                    <th>Preesens Negatiivinen</th>
+                                    <th>Imperfekti Positiivinen</th>
+                                    <th>Imperfekti Negatiivinen</th>
+                                </tr>
+                                <tr>
+                                    <th>Minä</th>
+                                    <td><input type="text" id="minaPresPos0"></td>
+                                    <td><input type="text" id="minaPresNeg0"></td>
+                                    <td><input type="text" id="minaImpPos0"></td>
+                                    <td><input type="text" id="minaImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>Sinä</th>
+                                    <td><input type="text" id="sinaPresPos0"></td>
+                                    <td><input type="text" id="sinaPresNeg0"></td>
+                                    <td><input type="text" id="sinaImpPos0"></td>
+                                    <td><input type="text" id="sinaImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>Hän</th>
+                                    <td><input type="text" id="hanPresPos0"></td>
+                                    <td><input type="text" id="hanPresNeg0"></td>
+                                    <td><input type="text" id="hanImpPos0"></td>
+                                    <td><input type="text" id="hanImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>Me</th>
+                                    <td><input type="text" id="mePresPos0"></td>
+                                    <td><input type="text" id="mePresNeg0"></td>
+                                    <td><input type="text" id="meImpPos0"></td>
+                                    <td><input type="text" id="meImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>Te</th>
+                                    <td><input type="text" id="tePresPos0"></td>
+                                    <td><input type="text" id="tePResNeg0"></td>
+                                    <td><input type="text" id="teImpPos0"></td>
+                                    <td><input type="text" id="teImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>He</th>
+                                    <td><input type="text" id="hePresPos0"></td>
+                                    <td><input type="text" id="hePresNeg0"></td>
+                                    <td><input type="text" id="heImpPos0"></td>
+                                    <td><input type="text" id="heImpNeg0"></td>
+                                </tr>
+                                <tr>
+                                    <th>Passiivi</th>
+                                    <td><input type="text" id="passPresPos0"></td>
+                                    <td><input type="text" id="passPresNeg0"></td>
+                                    <td><input type="text" id="passImpPos0"></td>
+                                    <td><input type="text" id="passImpNeg0"></td>
+                                </tr>
+                            </table>
+                            <input type="button" value="Save">
                     </form>
                     <form id="otherWord0">
                         <label for="English">
@@ -151,6 +167,9 @@
                         <input type="button" value="Save">
                     </form>
                 </section>
+                <input type="submit" value="Add New Noun or Adjective" class="addNounButtonBottom">
+                <input type="submit" value="Add New Verb" class="addVerbButtonBottom">
+                <input type="submit" value="Add Other" class="addOtherWordButtonBottom">        
             </div>
             <div id="settings">
                 <div class="blueRoundBox">
@@ -299,6 +318,9 @@
             const addNounButton = document.querySelector('.addNounButton');
             const addVerbButton = document.querySelector('.addVerbButton');
             const addOtherWordButton = document.querySelector('.addOtherWordButton');
+            const addNounButtonBottom = document.querySelector('.addNounButtonBottom');
+            const addVerbButtonBottom = document.querySelector('.addVerbButtonBottom');
+            const addOtherWordButtonBottom = document.querySelector('.addOtherWordButtonBottom');
             const saveDeckSubmitButton = document.getElementById('saveDeckSubmit');
             const numCardsField = document.getElementById("numCardsField");
             let wordList = document.querySelector(".wordList"); //defines var wordList as wordList section of page
@@ -389,12 +411,21 @@
                     verbTableRows[12].children[2].childNodes[0].id = "hePresNeg" + verbIndex;
                     verbTableRows[14].children[1].childNodes[0].id = "passPresPos" + verbIndex;
                     verbTableRows[14].children[2].childNodes[0].id = "passPresNeg" + verbIndex;
+                    verbTableRows[2].children[3].childNodes[0].id = "minaImpPos" + verbIndex;
+                    verbTableRows[2].children[4].childNodes[0].id = "minaImpNeg" + verbIndex;
+                    verbTableRows[4].children[3].childNodes[0].id = "sinaImpPos" + verbIndex;
+                    verbTableRows[4].children[4].childNodes[0].id = "sinaImpNeg" + verbIndex;
+                    verbTableRows[6].children[3].childNodes[0].id = "hanImpPos" + verbIndex;
+                    verbTableRows[6].children[4].childNodes[0].id = "hanImpNeg" + verbIndex;
+                    verbTableRows[8].children[3].childNodes[0].id = "meImpPos" + verbIndex;
+                    verbTableRows[8].children[4].childNodes[0].id = "meImpNeg" + verbIndex;
+                    verbTableRows[10].children[3].childNodes[0].id = "teImpPos" + verbIndex;
+                    verbTableRows[10].children[4].childNodes[0].id = "teImpNeg" + verbIndex;
+                    verbTableRows[12].children[3].childNodes[0].id = "heImpPos" + verbIndex;
+                    verbTableRows[12].children[4].childNodes[0].id = "heImpNeg" + verbIndex;
+                    verbTableRows[14].children[3].childNodes[0].id = "passImpPos" + verbIndex;
+                    verbTableRows[14].children[4].childNodes[0].id = "passImpNeg" + verbIndex;
                     verbChildren[3].id = newVerbSubmitID;
-
-
-
-
-
 
                     wordList.appendChild(verbForm);
                 }
@@ -422,6 +453,9 @@
             addNounButton.addEventListener('click', addNounTemplate);
             addVerbButton.addEventListener('click', addVerbTemplate);        
             addOtherWordButton.addEventListener('click', addOtherWordTemplate);  
+            addNounButtonBottom.addEventListener('click', addNounTemplate);
+            addVerbButtonBottom.addEventListener('click', addVerbTemplate);        
+            addOtherWordButtonBottom.addEventListener('click', addOtherWordTemplate);  
 
             const currentMaxNounForms = 5;
             const currentMaxVerbForms = 28;

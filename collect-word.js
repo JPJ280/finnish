@@ -100,6 +100,20 @@ function saveVerb(verbSaveIndex) {
     verbToSave.passPresPos = passPresPosField.value;
     let passPresNegField = document.getElementById("passPresNeg" + verbSaveIndex);
     verbToSave.passPresNeg = passPresNegField.value;
+    verbToSave.minaImpPos = document.getElementById("minaImpPos" + verbSaveIndex).value;
+    verbToSave.minaImpNeg = document.getElementById("minaImpNeg" + verbSaveIndex).value;
+    verbToSave.sinaImpPos = document.getElementById("sinaImpPos" + verbSaveIndex).value;
+    verbToSave.sinaImpNeg = document.getElementById("sinaImpNeg" + verbSaveIndex).value;
+    verbToSave.hanImpPos = document.getElementById("hanImpPos" + verbSaveIndex).value;
+    verbToSave.hanImpNeg = document.getElementById("hanImpNeg" + verbSaveIndex).value;
+    verbToSave.meImpPos = document.getElementById("meImpPos" + verbSaveIndex).value;
+    verbToSave.meImpNeg = document.getElementById("meImpNeg" + verbSaveIndex).value;
+    verbToSave.teImpPos = document.getElementById("teImpPos" + verbSaveIndex).value;
+    verbToSave.teImpNeg = document.getElementById("teImpNeg" + verbSaveIndex).value;
+    verbToSave.heImpPos = document.getElementById("heImpPos" + verbSaveIndex).value;
+    verbToSave.heImpNeg = document.getElementById("heImpNeg" + verbSaveIndex).value;
+    verbToSave.passImpPos = document.getElementById("passImpPos" + verbSaveIndex).value;
+    verbToSave.passImpNeg = document.getElementById("passImpNeg" + verbSaveIndex).value;
 
 
 
@@ -169,7 +183,8 @@ function getDeckConfig() {
         deckConjChecks[i] = document.getElementById("verbConjCheck" + i).checked;
     }
     let deckOtherWordChecks = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
-    let numCards = (Number.isInteger(numCardsField.value) && numCardsField.value > 0) ? numCardsField.value : "";
+    let numCardsFieldValue = Number.numCardsField.value;
+    let numCards = (Number.isInteger(numCardsFieldValue) && numCardsFieldValue > 0) ? numCardsFieldValue : "";
     let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks, 'numCards':numCards};
     return deckConfig;
 }
