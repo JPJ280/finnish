@@ -132,6 +132,9 @@ function saveOtherWord(otherWordSaveIndex) {
 addNounButton.addEventListener('click', loadNounSubmitButton);
 addVerbButton.addEventListener('click', loadVerbSubmitButton);
 addOtherWordButton.addEventListener('click', loadOtherWordSubmitButton);
+addNounButtonBottom.addEventListener('click', loadNounSubmitButton);
+addVerbButtonBottom.addEventListener('click', loadVerbSubmitButton);
+addOtherWordButtonBottom.addEventListener('click', loadOtherWordSubmitButton);
 
 deckNameSubmitButton.addEventListener('click', saveDeckName);
 saveDeckSubmitButton.addEventListener('click', saveDeckToFile);
