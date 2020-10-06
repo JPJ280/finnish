@@ -90,7 +90,7 @@ async function uploadFile() {
             document.getElementById('hePresNeg' + i).value = currentVerb.hePresNeg;
             document.getElementById('passPresPos' + i).value = currentVerb.passPresPos;
             document.getElementById('passPresNeg' + i).value = currentVerb.passPresNeg;
-            if(currentVerb.minaImpPos !== undefined) {
+            if(currentVerb.minaImpPos !== undefined) { //checks if noun has imperfect tense (may be empty)
                 document.getElementById('minaImpPos' + i).value = currentVerb.minaImpPos;
                 document.getElementById('minaImpNeg' + i).value = currentVerb.minaImpNeg;
                 document.getElementById('sinaImpPos' + i).value = currentVerb.sinaImpPos;
