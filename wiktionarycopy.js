@@ -76,7 +76,7 @@ function nounFromWikHTML(nounWikIndex) {
 function verbFromWikHTML(verbWikIndex) {
     let verbToLoadInput;
     verbToLoadInput = document.getElementById("verbFromWik" + verbWikIndex).value;
-
+    loadVerbFromWik(verbWikIndex, verbToLoadInput)
 }
 
 let nounToLoad;
