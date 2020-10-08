@@ -186,7 +186,7 @@ function getDeckConfig() {
         deckConjChecks[i] = document.getElementById("verbConjCheck" + i).checked;
     }
     let deckOtherWordChecks = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
-    let numCardsFieldValue = Number.numCardsField.value;
+    let numCardsFieldValue = Number(numCardsField.value);
     let numCards = (Number.isInteger(numCardsFieldValue) && numCardsFieldValue > 0) ? numCardsFieldValue : "";
     let deckConfig = {'nounChecks':deckNounChecks, 'nounDecChecks':deckDecChecks, 'verbChecks':deckVerbChecks, 'verbConjChecks': deckConjChecks, 'otherWordChecks':deckOtherWordChecks, 'numCards':numCards};
     return deckConfig;

@@ -93,6 +93,10 @@
                                 <td><input type="text" id="partPlu0" name="partPlu"></td>
                             </tr>
                         </table>
+                        <label for="copyNounFromWikLink">
+                            <input type="text" id="nounWikLink0" placeholder="Finnish Word Here"><input type="button" id="nounWikLink0Button" value="Take Directly from Wiktionary"></label>
+                        <label for="copyNounFromWiktionary">
+                            <input type="text" id="nounFromWik0" placeholder="Copy/Paste Wiktionary HTML Directly"><input type="button" id="nounFromWik0Button" value="Submit From Wiktionary"></label>
                         <input type="button" id="noun0Submit" value="Save">
                     </form>
 
@@ -159,6 +163,11 @@
                                 <td><input type="text" id="passImpNeg0"></td>
                             </tr>
                         </table>
+                        <label for="copyVerbFromWikLink">
+                            <input type="text" id="verbWikLink0" placeholder="Copy from Wiktionary"><input type="button" id="verbWikLink0Button" value="Submit From Wiktionary"></label>
+                        <label for="copyVerbFromWiktionary">
+                            <input type="text" id="verbFromWik0" placeholder="Copy from Wiktionary"><input type="button" id="verbFromWik0Button" value="Submit From Wiktionary"></label>
+    
                         <input type="button" value="Save">
                     </form>
                     <form id="otherWord0">
@@ -356,11 +365,17 @@
                 nounTableRows[6].children[1].childNodes[0].id = "partSing" + nounIndex;
                 nounTableRows[6].children[2].childNodes[0].id = "partPlu" + nounIndex;
                 nounForm.id = newNounID; //
-                nounChildren[3].id = newNounSubmitID;
-                nounChildren[3].class = newNounSubmitID;
+                nounChildren[5].id = newNounSubmitID;
+                nounChildren[5].class = newNounSubmitID;
+                nounChildren[3].children[0].id = "nounWikLink" + nounIndex;
+                nounChildren[3].children[1].id = "nounWikLink" + nounIndex + "Button";
+                nounChildren[4].children[0].id = "nounFromWik" + nounIndex;
+                nounChildren[4].children[1].id = "nounFromWik" + nounIndex + "Button";
 
 
                 wordList.appendChild(nounForm);
+                loadNounWikButtons();
+                loadNounWikHTMLButtons();
 
             }
 
@@ -409,28 +424,32 @@
                 verbTableRows[12].children[2].childNodes[0].id = "hePresNeg" + verbIndex;
                 verbTableRows[14].children[1].childNodes[0].id = "passPresPos" + verbIndex;
                 verbTableRows[14].children[2].childNodes[0].id = "passPresNeg" + verbIndex;
-                verbTableRows[16].children[1].childNodes[0].id = "minaImpPos" + verbIndex;
-                verbTableRows[16].children[2].childNodes[0].id = "minaImpNeg" + verbIndex;
-                verbTableRows[18].children[1].childNodes[0].id = "sinaImpPos" + verbIndex;
-                verbTableRows[18].children[2].childNodes[0].id = "sinaImpNeg" + verbIndex;
-                verbTableRows[20].children[1].childNodes[0].id = "hanImpPos" + verbIndex;
-                verbTableRows[20].children[2].childNodes[0].id = "hanImpNeg" + verbIndex;
-                verbTableRows[22].children[1].childNodes[0].id = "meImpPos" + verbIndex;
-                verbTableRows[22].children[2].childNodes[0].id = "meImpNeg" + verbIndex;
-                verbTableRows[24].children[1].childNodes[0].id = "teImpPos" + verbIndex;
-                verbTableRows[24].children[2].childNodes[0].id = "teImpNeg" + verbIndex;
-                verbTableRows[26].children[1].childNodes[0].id = "heImpPos" + verbIndex;
-                verbTableRows[26].children[2].childNodes[0].id = "heImpNeg" + verbIndex;
-                verbTableRows[28].children[1].childNodes[0].id = "passImpPos" + verbIndex;
-                verbTableRows[28].children[2].childNodes[0].id = "passImpNeg" + verbIndex;
-                verbChildren[3].id = newVerbSubmitID;
-
-
+                verbTableRows[2].children[3].childNodes[0].id = "minaImpPos" + verbIndex;
+                verbTableRows[2].children[4].childNodes[0].id = "minaImpNeg" + verbIndex;
+                verbTableRows[4].children[3].childNodes[0].id = "sinaImpPos" + verbIndex;
+                verbTableRows[4].children[4].childNodes[0].id = "sinaImpNeg" + verbIndex;
+                verbTableRows[6].children[3].childNodes[0].id = "hanImpPos" + verbIndex;
+                verbTableRows[6].children[4].childNodes[0].id = "hanImpNeg" + verbIndex;
+                verbTableRows[8].children[3].childNodes[0].id = "meImpPos" + verbIndex;
+                verbTableRows[8].children[4].childNodes[0].id = "meImpNeg" + verbIndex;
+                verbTableRows[10].children[3].childNodes[0].id = "teImpPos" + verbIndex;
+                verbTableRows[10].children[4].childNodes[0].id = "teImpNeg" + verbIndex;
+                verbTableRows[12].children[3].childNodes[0].id = "heImpPos" + verbIndex;
+                verbTableRows[12].children[4].childNodes[0].id = "heImpNeg" + verbIndex;
+                verbTableRows[14].children[3].childNodes[0].id = "passImpPos" + verbIndex;
+                verbTableRows[14].children[4].childNodes[0].id = "passImpNeg" + verbIndex;
+                verbChildren[5].id = newVerbSubmitID;
+                verbChildren[3].children[0].id = "verbWikLink" + verbIndex;
+                verbChildren[3].children[1].id = "verbWikLink" + verbIndex + "Button";
+                verbChildren[4].children[0].id = "verbFromWik" + verbIndex;
+                verbChildren[4].children[1].id = "verbFromWik" + verbIndex + "Button";
 
 
 
 
                 wordList.appendChild(verbForm);
+                loadVerbWikButtons();
+                loadVerbWikHTMLButtons();
 
             }
 
@@ -462,5 +481,6 @@
         </script>
         <script src="collect-word.js" defer></script>
         <script src="usedecksettings.js"></script>
+        <script src="wiktionarycopy.js"></script>
     </body>
 </html>
