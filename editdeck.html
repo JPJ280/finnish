@@ -90,6 +90,61 @@
                                 <td><input type="text" id="partSing0" name="partSing"></td>
                                 <td><input type="text" id="partPlu0" name="partPlu"></td>
                             </tr>
+                            <tr>
+                                <th>Inessiivi</th>
+                                <td><input type="text" id="ineSing0" name="ineSing"></td>
+                                <td><input type="text" id="inePlu0" name="inePlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Elatiivi</th>
+                                <td><input type="text" id="elaSing0" name="elaSing"></td>
+                                <td><input type="text" id="elaPlu0" name="elaPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Illatiivi</th>
+                                <td><input type="text" id="illSing0" name="illSing"></td>
+                                <td><input type="text" id="illPlu0" name="illPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Adessiivi</th>
+                                <td><input type="text" id="adeSing0" name="adeSing"></td>
+                                <td><input type="text" id="adePlu0" name="adePlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Ablatiivi</th>
+                                <td><input type="text" id="ablSing0" name="ablSing"></td>
+                                <td><input type="text" id="ablPlu0" name="ablPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Allatiivi</th>
+                                <td><input type="text" id="allSing0" name="allSing"></td>
+                                <td><input type="text" id="allPlu0" name="allPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Essiivi</th>
+                                <td><input type="text" id="essSing0" name="essSing"></td>
+                                <td><input type="text" id="essPlu0" name="essPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Translatiivi</th>
+                                <td><input type="text" id="traSing0" name="traSing"></td>
+                                <td><input type="text" id="traPlu0" name="traPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Instruktiivi</th>
+                                <td><input type="text" id="istSing0" name="istSing"></td>
+                                <td><input type="text" id="istPlu0" name="istPlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Abessiivi</th>
+                                <td><input type="text" id="abeSing0" name="abeSing"></td>
+                                <td><input type="text" id="abePlu0" name="abePlu"></td>
+                            </tr>
+                            <tr>
+                                <th>Komitatiivi</th>
+                                <td><input type="text" id="comSing0" name="comSing"></td>
+                                <td><input type="text" id="comPlu0" name="comPlu"></td>
+                            </tr>
                         </table>
                         <label for="copyNounFromWikLink">
                             <input type="text" id="nounWikLink0" placeholder="Finnish Word Here"><input type="button" id="nounWikLink0Button" value="Take Directly from Wiktionary"></label>
@@ -187,8 +242,10 @@
                     <h2 class="secondHeader">Number of Cards:</h2>
                     <input type="text" id="numCardsField" placeholder="Default 20">
                     <h2 class="secondHeader">Presets:</h2>
+                    <button type="button" id="deckDefaultButton">Deck Default</button>
                     <button type="button" id="standardPresetButton">Standard</button>
                     <button type="button" id="basicPresetButton">Basic</button>
+                    <button type="button" id="allPresetButton">All Active</button>
                 </div>
                 <div class="blueRoundBox">
                     <h2 class="secondHeader">Substantives</h2>
@@ -226,7 +283,61 @@
                                 <td><input checked="checked" type="checkbox" id="nounDecCheck3"></td>
                                 <td><input checked="checked" type="checkbox" id="nounDecCheck4"></td>
                             </tr>
-
+                            <tr>
+                                <th>Inessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck5"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck6"></td>
+                            </tr>
+                            <tr>
+                                <th>Elatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck7"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck8"></td>
+                            </tr>
+                            <tr>
+                                <th>Illatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck9"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck10"></td>
+                            </tr>
+                            <tr>
+                                <th>Adessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck11"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck12"></td>
+                            </tr>
+                            <tr>
+                                <th>Ablatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck13"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck14"></td>
+                            </tr>
+                            <tr>
+                                <th>Allatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck15"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck16"></td>
+                            </tr>
+                            <tr>
+                                <th>Essiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck17"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck18"></td>
+                            </tr>
+                            <tr>
+                                <th>Translatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck19"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck20"></td>
+                            </tr>
+                            <tr>
+                                <th>Instruktiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck21"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck22"></td>
+                            </tr>
+                            <tr>
+                                <th>Abessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck23"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck24"></td>
+                            </tr>
+                            <tr>
+                                <th>Komitatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck25"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck26"></td>
+                            </tr>
                         </table>
                     </form>
 
@@ -360,6 +471,28 @@
                 nounTableRows[4].children[2].childNodes[0].id = "genPlu" + nounIndex;
                 nounTableRows[6].children[1].childNodes[0].id = "partSing" + nounIndex;
                 nounTableRows[6].children[2].childNodes[0].id = "partPlu" + nounIndex;
+                nounTableRows[8].children[1].childNodes[0].id = "ineSing" + nounIndex;
+                nounTableRows[8].children[2].childNodes[0].id = "inePlu" + nounIndex;
+                nounTableRows[10].children[1].childNodes[0].id = "elaSing" + nounIndex;
+                nounTableRows[10].children[2].childNodes[0].id = "elaPlu" + nounIndex;
+                nounTableRows[12].children[1].childNodes[0].id = "illSing" + nounIndex;
+                nounTableRows[12].children[2].childNodes[0].id = "illPlu" + nounIndex;
+                nounTableRows[14].children[1].childNodes[0].id = "adeSing" + nounIndex;
+                nounTableRows[14].children[2].childNodes[0].id = "adePlu" + nounIndex;
+                nounTableRows[16].children[1].childNodes[0].id = "ablSing" + nounIndex;
+                nounTableRows[16].children[2].childNodes[0].id = "ablPlu" + nounIndex;
+                nounTableRows[18].children[1].childNodes[0].id = "allSing" + nounIndex;
+                nounTableRows[18].children[2].childNodes[0].id = "allPlu" + nounIndex;
+                nounTableRows[20].children[1].childNodes[0].id = "essSing" + nounIndex;
+                nounTableRows[20].children[2].childNodes[0].id = "essPlu" + nounIndex;
+                nounTableRows[22].children[1].childNodes[0].id = "traSing" + nounIndex;
+                nounTableRows[22].children[2].childNodes[0].id = "traPlu" + nounIndex;
+                nounTableRows[24].children[1].childNodes[0].id = "istSing" + nounIndex;
+                nounTableRows[24].children[2].childNodes[0].id = "istPlu" + nounIndex;
+                nounTableRows[26].children[1].childNodes[0].id = "abeSing" + nounIndex;
+                nounTableRows[26].children[2].childNodes[0].id = "abePlu" + nounIndex;
+                nounTableRows[28].children[1].childNodes[0].id = "comSing" + nounIndex;
+                nounTableRows[28].children[2].childNodes[0].id = "comPlu" + nounIndex;
                 nounForm.id = newNounID; //
                 nounChildren[5].id = newNounSubmitID;
                 nounChildren[5].class = newNounSubmitID;
@@ -479,9 +612,6 @@
             addNounButtonBottom.addEventListener('click', addNounTemplate);
             addVerbButtonBottom.addEventListener('click', addVerbTemplate);        
             addOtherWordButtonBottom.addEventListener('click', addOtherWordTemplate);  
-
-            const currentMaxNounForms = 5;
-            const currentMaxVerbForms = 28;
 
         </script>
         <!--<script src="collect-word.js" defer></script>-->

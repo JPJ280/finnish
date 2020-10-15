@@ -90,6 +90,28 @@ function loadNounFromWik(nounWikIndex, nounToLoadInput) {
     document.getElementById("genPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi gen|p-form-of")[0]);
     document.getElementById("partSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi par|s-form-of")[0]);
     document.getElementById("partPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi par|p-form-of")[0]);
+    document.getElementById("ineSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ine|s-form-of")[0]);
+    document.getElementById("inePlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ine|p-form-of")[0]);
+    document.getElementById("elaSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ela|s-form-of")[0]);
+    document.getElementById("elaPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ela|p-form-of")[0]);
+    document.getElementById("illSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ill|s-form-of")[0]);
+    document.getElementById("illPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ill|p-form-of")[0]);
+    document.getElementById("adeSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ade|s-form-of")[0]);
+    document.getElementById("adePlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ade|p-form-of")[0]);
+    document.getElementById("ablSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi abl|s-form-of")[0]);
+    document.getElementById("ablPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi abl|p-form-of")[0]);
+    document.getElementById("allSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi all|s-form-of")[0]);
+    document.getElementById("allPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi all|p-form-of")[0]);
+    document.getElementById("essSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ess|s-form-of")[0]);
+    document.getElementById("essPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ess|p-form-of")[0]);
+    document.getElementById("traSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi tra|s-form-of")[0]);
+    document.getElementById("traPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi tra|p-form-of")[0]);
+    document.getElementById("istSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ist|s-form-of")[0]);
+    document.getElementById("istPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi ist|p-form-of")[0]);
+    document.getElementById("abeSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi abe|s-form-of")[0]);
+    document.getElementById("abePlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi abe|p-form-of")[0]);
+    document.getElementById("comSing" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi com-sing-a-form-of")[0]);
+    document.getElementById("comPlu" + nounWikIndex).value = formFixer(nounHTML.getElementsByClassName("Latn form-of lang-fi com-pl-a-form-of")[0]);
 
 }
 
@@ -130,6 +152,13 @@ function loadVerbFromWik(verbWikIndex, verbToLoadInput) {
 }
 
 function formFixer(field) {
-    let fieldValue = (field !== undefined) ? field.textContent : "";
+    let fieldValue;
+    if (typeof(field) === 'string') {
+        fieldValue = (field !== undefined) ? field : "";
+    } 
+    else {
+        fieldValue = (field !== undefined) ? field.textContent : "";
+    }
     return fieldValue;
 }
+

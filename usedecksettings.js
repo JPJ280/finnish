@@ -1,5 +1,10 @@
 const standardPresetButton = document.getElementById("standardPresetButton");
 const basicPresetButton = document.getElementById("basicPresetButton");
+const deckDefaultButton = document.getElementById("deckDefaultButton");
+const allPresetButton = document.getElementById("allPresetButton")
+
+const currentMaxNounForms = 27;
+const currentMaxVerbForms = 28;
 
 const t = true;
 const f = false;
@@ -12,14 +17,39 @@ function deckPreset(nounChecks, nounDecChecks, verbChecks, verbConjChecks, other
     this.otherWordChecks = otherWordChecks;
 }
 
+deckDefaultButton.addEventListener('click', useDeckDefault);
+function useDeckDefault() {
+    if(deckConfig !== undefined) {
+        useSettings(deckConfig);
+    }
+}
+
 const standardNounChecks = [t, t, t];
-const standardNounDecChecks = [t, t, f, t, f];
+const standardNounDecChecks = [t, t, f, t, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f];
 const standardVerbChecks = [t, t, t];
 const standardVerbConjChecks = [t, f, f, f, f, f, f, t, f, f, f, f, f, f, t, f, f, f, f, f, f, t, f, f, f, f, f, f];
 const standardOtherWordChecks = [t, t];
 const standardPreset = new deckPreset(standardNounChecks, standardNounDecChecks, standardVerbChecks, standardVerbConjChecks, standardOtherWordChecks);
 
 standardPresetButton.addEventListener('click', () => useSettings(standardPreset));
+
+const basicNounChecks = [t, t, t];
+const basicNounDecChecks = [t, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f];
+const basicVerbChecks = [t, t, t];
+const basicVerbConjChecks = [t, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f, f];
+const basicOtherWordChecks = [t, t];
+const basicPreset = new deckPreset(basicNounChecks, basicNounDecChecks, basicVerbChecks, basicVerbConjChecks, basicOtherWordChecks);
+
+basicPresetButton.addEventListener('click', () => useSettings(basicPreset));
+
+const allNounChecks = [t, t, t];
+const allNounDecChecks = [t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, f, t, t, t, f, t];
+const allVerbChecks = [t, t, t];
+const allVerbConjChecks = [t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t];
+const allOtherWordchecks = [t, t];
+const allPreset = new deckPreset(allNounChecks, allNounDecChecks, allVerbChecks, allVerbConjChecks, allOtherWordchecks);
+
+allPresetButton.addEventListener('click', () => useSettings(allPreset));
 
 function generateNounChecksArray(nounChecksPreset) {
     document.getElementById("nounCheck0").checked = nounChecksPreset[0];

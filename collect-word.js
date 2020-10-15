@@ -61,7 +61,28 @@ function saveNoun(nounSaveIndex) {
     nounToSave.partSing = partSingField.value;
     let partPluField = document.getElementById("partPlu" + nounSaveIndex);
     nounToSave.partPlu = partPluField.value;
-
+    nounToSave.ineSing = document.getElementById("ineSing" + nounSaveIndex).value;
+    nounToSave.inePlu = document.getElementById("inePlu" + nounSaveIndex).value;
+    nounToSave.elaSing = document.getElementById("elaSing" + nounSaveIndex).value;
+    nounToSave.elaPlu = document.getElementById("elaPlu" + nounSaveIndex).value;
+    nounToSave.illSing = document.getElementById("illSing" + nounSaveIndex).value;
+    nounToSave.illPlu = document.getElementById("illPlu" + nounSaveIndex).value;
+    nounToSave.adeSing = document.getElementById("adeSing" + nounSaveIndex).value;
+    nounToSave.adePlu = document.getElementById("adePlu" + nounSaveIndex).value;
+    nounToSave.ablSing = document.getElementById("ablSing" + nounSaveIndex).value;
+    nounToSave.ablPlu = document.getElementById("ablPlu" + nounSaveIndex).value;
+    nounToSave.allSing = document.getElementById("allSing" + nounSaveIndex).value;
+    nounToSave.allPlu = document.getElementById("allPlu" + nounSaveIndex).value;
+    nounToSave.essSing = document.getElementById("essSing" + nounSaveIndex).value;
+    nounToSave.essPlu = document.getElementById("essPlu" + nounSaveIndex).value;
+    nounToSave.traSing = document.getElementById("traSing" + nounSaveIndex).value;
+    nounToSave.traPlu = document.getElementById("traPlu" + nounSaveIndex).value;
+    nounToSave.istSing = document.getElementById("istSing" + nounSaveIndex).value;
+    nounToSave.istPlu = document.getElementById("istPlu" + nounSaveIndex).value;
+    nounToSave.abeSing = document.getElementById("abeSing" + nounSaveIndex).value;
+    nounToSave.abePlu = document.getElementById("abePlu" + nounSaveIndex).value;
+    nounToSave.comSing = document.getElementById("comSing" + nounSaveIndex).value;
+    nounToSave.comPlu = document.getElementById("comPlu" + nounSaveIndex).value;
 
     nounList[nounSaveIndex] = nounToSave;
 }

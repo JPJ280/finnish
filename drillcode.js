@@ -5,8 +5,6 @@ function getRandomInt(max) {
     return(returnInt);
 }
 
-const currentMaxNounForms = 5;
-const currentMaxVerbForms = 28;
 const currentMaxPronounForms = 0;
 let instruction = document.getElementById('instruction');
 let feedback = document.getElementById('feedback');
@@ -30,7 +28,7 @@ function checkAnswer() {
     else {
         feedback.textContent = "Incorrect. ";
     }
-    feedback.textContent += "The answer is " + answer[answerIndex];
+    feedback.textContent += "The answer is \"" + answer[answerIndex] + "\"";
     userAnswerField.value = '';
 }
 
@@ -123,11 +121,11 @@ function questionsStart() {
             questionType = nounChooseArray[questionRand];
             switch (questionType) {
                 case 0:
-                    instructions[wordIndex] = "Translate " + wordPicked.englishWord + " into Finnish";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.englishWord + "\" into Finnish";
                     answer[wordIndex] = wordPicked.finnishWord;
                     break;
                 case 1:
-                    instructions[wordIndex] = "Translate " + wordPicked.finnishWord + " into English";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.finnishWord + "\" into English";
                     answer[wordIndex] = wordPicked.englishWord;
                     break;
                 case 2:
@@ -136,28 +134,111 @@ function questionsStart() {
                     let nounCase;
                     switch (nounCaseNum) {
                         case 1:
-                            nounCase = 'genetiivi yksikkö'; 
+                            nounCase = 'yksikön genetiivi'; 
                             answer[wordIndex] = wordPicked.genSing;
                             break;
                         case 3:
-                            nounCase = 'partitiivi yksikkö';
+                            nounCase = 'yksikön partitiivi';
                             answer[wordIndex] = wordPicked.partSing;
                             break;
                         case 0:
-                            nounCase = 'nominatiivi monikko';
+                            nounCase = 'monikon nominatiivi';
                             answer[wordIndex] = wordPicked.nomPlu;
                             break;
                         case 2:
-                            nounCase = 'genetiivi monikko';
+                            nounCase = 'monikon genetiivi';
                             answer[wordIndex] = wordPicked.genPlu;
                             break;
                         case 4:
-                            nounCase = 'partitiivi monikko';
+                            nounCase = 'monikon partitiivi';
                             answer[wordIndex] = wordPicked.partPlu;
                             break;
+                        case 5:
+                            nounCase = 'yksikön inessiivi';
+                            answer[wordIndex] = wordPicked.ineSing;
+                            break;
+                        case 6:
+                            nounCase = 'monikon inessiivi';
+                            answer[wordIndex] = wordPicked.inePlu;
+                            break;
+                        case 7:
+                            nounCase = 'yksikön elatiivi';
+                            answer[wordIndex] = wordPicked.elaSing;
+                            break;
+                        case 8:
+                            nounCase = 'monikon elatiivi';
+                            answer[wordIndex] = wordPicked.elaPlu;
+                            break;
+                        case 9:
+                            nounCase = 'yksikön illatiivi';
+                            answer[wordIndex] = wordPicked.illSing;
+                            break;
+                        case 10:
+                            nounCase = 'monikon illatiivi';
+                            answer[wordIndex] = wordPicked.illPlu;
+                            break;
+                        case 11:
+                            nounCase = 'yksikön adessiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 12:
+                            nounCase = 'monikon adessiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 13:
+                            nounCase = 'yksikön ablatiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 14:
+                            nounCase = 'monikon ablatiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 15:
+                            nounCase = 'yksikön allatiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 16:
+                            nounCase = 'monikon allatiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 17:
+                            nounCase = 'yksikön essiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 18:
+                            nounCase = 'monikon essiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 19:
+                            nounCase = 'yksikön translatiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 20:
+                            nounCase = 'monikon translatiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 21:
+                        case 22:
+                            nounCase = 'monikon instruktiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 23:
+                            nounCase = 'yksikön abessiivi';
+                            answer[wordIndex] = wordPicked.adeSing;
+                            break;
+                        case 24:
+                            nounCase = 'monikon abessiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+                        case 25:
+                        case 26:
+                            nounCase = 'monikon komitatiivi';
+                            answer[wordIndex] = wordPicked.adePlu;
+                            break;
+
                     }
-                    instructions[wordIndex] = "Decline: " + wordPicked.nomSing + ", " + nounCase;
-                    if(answer[wordIndex] === '') {
+                    instructions[wordIndex] = "Decline: \"" + wordPicked.nomSing + "\", " + nounCase;
+                    if(answer[wordIndex] === '' || answer[wordIndex] === undefined) {
                         instructions[wordIndex] = 'skip';
                     }
                     break;
@@ -170,11 +251,11 @@ function questionsStart() {
             questionType = verbChooseArray[questionRand];
             switch (questionType) {
                 case 0:
-                    instructions[wordIndex] = "Translate " + wordPicked.englishWord + " into Finnish";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.englishWord + "\" into Finnish";
                     answer[wordIndex] = wordPicked.finnishWord;
                     break;
                 case 1:
-                    instructions[wordIndex] = "Translate " + wordPicked.finnishWord + " into English";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.finnishWord + "\" into English";
                     answer[wordIndex] = wordPicked.englishWord;
                     break;
                 case 2:
@@ -295,7 +376,7 @@ function questionsStart() {
                             answer[wordIndex] = wordPicked.passImpNeg;
                             break;
                     }
-                    instructions[wordIndex] = "Conjugate: " + wordPicked.finnishWord + ", " + verbCase;
+                    instructions[wordIndex] = "Conjugate: \"" + wordPicked.finnishWord + "\", " + verbCase;
                     if(answer[wordIndex] === '' || answer[wordIndex] === undefined) {
                         instructions[wordIndex] = 'skip';
                     }
@@ -305,11 +386,11 @@ function questionsStart() {
             questionType = getRandomInt(2);
             switch (questionType) {
                 case 0:
-                    instructions[wordIndex] = "Translate " + wordPicked.englishWord + " into Finnish";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.englishWord + "\" into Finnish";
                     answer[wordIndex] = wordPicked.finnishWord;
                     break;
                 case 1:
-                    instructions[wordIndex] = "Translate " + wordPicked.finnishWord + " into English";
+                    instructions[wordIndex] = "Translate \"" + wordPicked.finnishWord + "\" into English";
                     answer[wordIndex] = wordPicked.englishWord;
                     break;
             }
