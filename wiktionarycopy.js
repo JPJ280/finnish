@@ -5,6 +5,10 @@ let nounFromWikHTMLButtons = [];
 let verbFromWikHTMLButtons = [];
 let otherWordFromWikHTMLButtons = [];
 
+/**
+ * Called when a new substantive is added. Saves the submit with Wiktionary link button and adds
+ * an event listener to call the nounFromWikLink function.
+ */
 function loadNounWikButtons() {
     nounFromWikButtons[nounIndex] = document.querySelector('#nounWikLink' + nounIndex + 'Button');
     for (let i = nounIndex; i < nounIndex + 1; i++) {
@@ -14,6 +18,10 @@ function loadNounWikButtons() {
     //nounSubmitButtons[nounIndex].addEventListener('click', () => saveNoun(nounIndex));
 }
 
+/**
+ * Called when a new verb is added. Saves the submit with Wiktionary link button and adds
+ * an event listener to call the verbFromWikLink function.
+ */
 function loadVerbWikButtons() {
     verbFromWikButtons[verbIndex] = document.querySelector('#verbWikLink' + verbIndex + 'Button');
     for (let j = verbIndex; j < verbIndex + 1; j++) {
@@ -21,6 +29,9 @@ function loadVerbWikButtons() {
     }  
 }
 
+/**
+ * Currently unused
+ */
 function loadOtherWordWikButtons() {
     otherWordFromWikButtons[otherWordIndex] = document.querySelector('#otherWordWikLink' + otherWordIndex + 'Button');
     for (let k = otherWordIndex; k < otherWordIndex + 1; k++) {
@@ -28,6 +39,10 @@ function loadOtherWordWikButtons() {
     }  
 }
 
+/**
+ * Called when a new substantive is added. Saves the submit with Wiktionary HTML button and adds
+ * an event listener to call the nounFromWikHTML function.
+ */
 function loadNounWikHTMLButtons() {
     nounFromWikHTMLButtons[nounIndex] = document.querySelector('#nounFromWik' + nounIndex + 'Button');
     for (let i = nounIndex; i < nounIndex + 1; i++) {
@@ -37,6 +52,10 @@ function loadNounWikHTMLButtons() {
     //nounSubmitButtons[nounIndex].addEventListener('click', () => saveNoun(nounIndex));
 }
 
+/**
+ * Called when a new verb is added. Saves the submit with Wiktionary link button and adds
+ * an event listener to call the verbFromWikHTML function.
+ */
 function loadVerbWikHTMLButtons() {
     verbFromWikHTMLButtons[verbIndex] = document.querySelector('#verbFromWik' + verbIndex + 'Button');
     for (let j = verbIndex; j < verbIndex + 1; j++) {
@@ -44,6 +63,9 @@ function loadVerbWikHTMLButtons() {
     }  
 }
 
+/**
+ * Currently unused
+ */
 function loadOtherWordWikHTMLButtons() {
     otherWordFromWikHTMLButtons[otherWordIndex] = document.querySelector('#otherWordFromWik' + otherWordIndex + 'Button');
     for (let k = otherWordIndex; k < otherWordIndex + 1; k++) {
@@ -51,6 +73,13 @@ function loadOtherWordWikHTMLButtons() {
     }  
 }
 
+/**
+ * Called when the "Submit from Wiktionary" button is clicked. Reads the word the user input, then
+ * gets the link for the Wiktionary API for that word. Takes the HTML from the Wiktionary page as
+ * a string, then calls loadNounFromWik with the index and the string.
+ * 
+ * @param {number} nounWikIndex The index of the substantive template to be copied to.
+ */
 async function nounFromWikLink(nounWikIndex) {
     let nounValue = document.getElementById("nounWikLink" + nounWikIndex).value;
     let nounWikLink = "https://en.wiktionary.org/api/rest_v1/page/html/" + nounValue;
@@ -59,6 +88,13 @@ async function nounFromWikLink(nounWikIndex) {
     loadNounFromWik(nounWikIndex, nounToLoadInput);
 }
 
+/**
+ * Called when the "Submit from Wiktionary" button is clicked. Reads the word the user input, then
+ * gets the link for the Wiktionary API for that word. Takes the HTML from the Wiktionary page as
+ * a string, then calls loadVerbFromWik with the index and the string.
+ * 
+ * @param {number} verbWikIndex The index of the verb template to be copied to.
+ */
 async function verbFromWikLink(verbWikIndex) {
     let verbValue = document.getElementById("verbWikLink" + verbWikIndex).value;
     let verbWikLink = "https://en.wiktionary.org/api/rest_v1/page/html/" + verbValue;
@@ -67,12 +103,24 @@ async function verbFromWikLink(verbWikIndex) {
     loadVerbFromWik(verbWikIndex, verbToLoadInput);
 }
 
+/**
+ * Called when the "Submit from Wiktionary HTML" button is clicked. Reads from the HTML the
+ * user input as a string, then calls loadNounFromWik with the index and the string.
+ * 
+ * @param {number} nounWikIndex The index of the substantive template to be copied to.
+ */
 function nounFromWikHTML(nounWikIndex) {
     let nounToLoadInput;
     nounToLoadInput = document.getElementById("nounFromWik" + nounWikIndex).value;
     loadNounFromWik(nounWikIndex, nounToLoadInput);
 }
 
+/**
+ * Called when the "Submit fromWiktionary HTML" button is clicked. Reads from the HTML the
+ * user input as a string, then calls loadVerbFromWik with the index and the string.
+ * 
+ * @param {number} verbWikIndex The index of the verb template to be copied to.
+ */
 function verbFromWikHTML(verbWikIndex) {
     let verbToLoadInput;
     verbToLoadInput = document.getElementById("verbFromWik" + verbWikIndex).value;
@@ -81,6 +129,15 @@ function verbFromWikHTML(verbWikIndex) {
 
 let nounToLoad;
 let nounHTML;
+/**
+ * Creates an element that has the same HTML as the Wiktionary page, then finds each form of the word within the HTML
+ * (through the class) and pastes it into the correct spot in the substantive template. If no element of the correct
+ * class can be found in the HTML (and so the text content is undefined), leaves the place blank (does this by calling
+ * the formFixer function on each form of the word).
+ * 
+ * @param {number} nounWikIndex The index of the substantive template the function will copy to.
+ * @param {string} nounToLoadInput The HTML from theWiktionary page.
+ */
 function loadNounFromWik(nounWikIndex, nounToLoadInput) {
     nounHTML = document.createElement('div');
     nounHTML.innerHTML = nounToLoadInput;
@@ -116,6 +173,15 @@ function loadNounFromWik(nounWikIndex, nounToLoadInput) {
 }
 
 let verbHTML;
+/**
+ * Creates an element that has the same HTML as the Wiktionary page, then finds each form of the word within the HTML
+ * (through the class) and pastes it into the correct spot in the verb template. If no element of the correct
+ * class can be found in the HTML (and so the text content is undefined), leaves the place blank (does this by calling
+ * the formFixer function on each form of the word).
+ * 
+ * @param {number} verbWikIndex The index of the verb template the function will copy to.
+ * @param {string} verbToLoadInput The HTML of the Wiktionary page.
+ */
 function loadVerbFromWik(verbWikIndex, verbToLoadInput) {
     verbHTML = document.createElement('div');
     verbHTML.innerHTML = verbToLoadInput;
@@ -151,6 +217,13 @@ function loadVerbFromWik(verbWikIndex, verbToLoadInput) {
 
 }
 
+/**
+ * If field is undefined, it will return en empty string. Otherwise, if field is an HTML element, returns the text content
+ * of field; if field is a string, returns the value of field.
+ * 
+ * @param {*} field Either an element or a string.
+ * @returns {string} The value of the string or the text content of the element if field is defined, otherwise an empty string.
+ */
 function formFixer(field) {
     let fieldValue;
     if (typeof(field) === 'string') {

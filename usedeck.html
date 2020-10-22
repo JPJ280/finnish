@@ -298,7 +298,7 @@
             const confirmUpload = document.getElementById('confirmUpload');
             confirmUpload.addEventListener('click', uploadFile);
 
-            async function uploadFile() {
+            async function uploadFile() { //parses user-uploaded .json file
                 deckFile = document.getElementById('deckUpload').files;
                 let deckFileText = await deckFile[0].text();
                 deck = JSON.parse(deckFileText);

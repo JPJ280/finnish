@@ -450,6 +450,19 @@
 
             //let noun1Submit = document.querySelector('#noun1Submit')
 
+            /**
+             * Creates a new slot for a substantive in the word list.
+             * 
+             * If the user has not uploaded a deck to edit, it will prompt them to do so before they call this with a button.
+             * When they upload a deck, this function will be automatically called until the deck has been recreated.
+             * 
+             * First, increments nounIndex. Clones the noun0 element, then goes through each text input field and button
+             * and changes the ids to match nounIndex, as well as the id for the entire element. Then adds the new substantive
+             * template to the list. Calls functions to add event listeners to the save word buttons and import from
+             * wiktionary input fields.
+             * 
+             * There's almost certainly a far better way to do this; it will most likely be refactored.
+             */
             function addNounTemplate() {
                 if(uploaded === false){
                     alert('Please submit a deck!');
@@ -503,12 +516,14 @@
 
 
                 wordList.appendChild(nounForm);
+                loadNounSubmitButton();
                 loadNounWikButtons();
                 loadNounWikHTMLButtons();
                 }
 
             }
 
+            /* DEBUGGING
             let nounForm = document.getElementById("noun0").cloneNode(true);
                 let nounChildren = nounForm.children;
                 let nounTable = nounChildren[2];
@@ -525,9 +540,22 @@
                 let nounForm = document.getElementById("noun0").cloneNode(true);
                 let nounChildNodeList = nounForm.childNodes;
                 return nounChildNodeList;
-
             }
+            */
 
+            /**
+             * Creates a new slot for a verb in the word list.
+             * 
+             * If the user has not uploaded a deck to edit, it will prompt them to do so before they call this with a button.
+             * When they upload a deck, this function will be automatically called until the deck has been recreated.
+             * 
+             * First, increments verbIndex. Clones the verb0 element, then goes through each text input field and button
+             * and changes the ids to match verbIndex, as well as the id for the entire element. Then adds the new verb
+             * template to the list. Calls functions to add event listeners to the save word buttons and import from
+             * wiktionary input fields.
+             * 
+             * There's almost certainly a far better way to do this; it will most likely be refactored.
+             */
             function addVerbTemplate() {
                 if(uploaded === false){
                     alert('Please submit a deck!');
@@ -582,11 +610,22 @@
 
 
                     wordList.appendChild(verbForm);
+                    loadVerbSubmitButton();
                     loadVerbWikButtons();
                     loadVerbWikHTMLButtons();
                 }
             }
 
+            /**
+             * Creates a new slot for an other word (English-Finnish, no other word forms) in the word list.
+             * 
+             * If the user has not uploaded a deck to edit, it will prompt them to do so before they call this with a button.
+             * When they upload a deck, this function will be automatically called until the deck has been recreated.
+             * 
+             * First, increments otherWordIndex. Clones the otherWord0 element, then goes through each text input field and button
+             * and changes the ids to match otherWordIndex, as well as the id for the entire element. Then adds the new other word
+             * template to the list. Calls functions to add an event listener to the save word button.
+             */
             function addOtherWordTemplate() {
                 if(uploaded === false){
                     alert('Please submit a deck!');
@@ -602,6 +641,7 @@
                     otherWordChildren[2].id = newOtherWordSubmitID;
                     otherWordForm.id = newOtherWordID;
                     wordList.appendChild(otherWordForm);
+                    loadOtherWordSubmitButton();
                 }
             }
 

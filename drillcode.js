@@ -1,5 +1,11 @@
-startButton.addEventListener('click', questionsStart);
+startButton.addEventListener('click', initializeDeck);
 
+/**
+ * Generates a random integer between 0 (inclusive) and max (exclusive)
+ * 
+ * @param {number} max Function will not return this integer or anything greater
+ * @returns Integer between 0 (inclusive) and max (exclusive)
+ */
 function getRandomInt(max) {
     returnInt = Math.floor(Math.random() * max);
     return(returnInt);
@@ -20,6 +26,10 @@ let answerIndex;
 let quizFunctions = [];
 const testingPara = document.getElementById('testing');
 
+/**
+ * Reads the user's answer, compares it to the correct answer, tells the user whether they were correct, and 
+ * empties the answer field.
+ */
 function checkAnswer() {
     userAnswer = userAnswerField.value;
     if(userAnswer === answer[answerIndex]){
@@ -32,8 +42,24 @@ function checkAnswer() {
     userAnswerField.value = '';
 }
 
-function questionsStart() {
-    let questionType;
+let nounChooseArray = [];
+let nounDeclineChooseArray = [];
+let verbChooseArray = [];
+let verbConjChooseArray = [];
+let otherWordChooseArray = [];
+/**
+ * Gets the number of each type of word in the deck. Generates an array for each type of word to indicate which type of questions
+ * the user would like to get. If the user indicates they want inflections for a word type that supports them, but want no forms
+ * of the inflections, goes forward as if the user indicated they didn't want inflections. If the user indicated they wanted no
+ * questions for a type of word, the program acts as if there are none of that type of word in the deck (assigns the number of cards
+ * of that type to 0). If total number of words is 0, quits the program and returns an error message. (This could be because the user
+ * has no words in the deck, but also could be because for any type of word in the deck, all settings are off; in other words, invalid
+ * settings rather than invalid deck. The error message should be more dynamic in the future to tell the user exactly what is wrong.)
+ * Starts generating the questions with the number of each type of word and the boolean choose arrays (global variables).
+ * 
+ * This code may need to be refactored.
+ */
+function initializeDeck() {
     let numNouns = deckNouns.length;
     if(numNouns !== 0) {
         numNouns = numNouns -1;
@@ -48,11 +74,15 @@ function questionsStart() {
             nounPromptArray[2] = false;
         }
     }
+    //let usesNouns;
+    nounChooseArray = [];
     if(nounPromptArray.includes(true)) {
         nounChooseArray = createNounChooseArray(nounPromptArray);
+        usesNouns = true;
     }
     else {
         numNouns = 0;
+        usesNouns = false;
     }
     let numVerbs = deckVerbs.length;
     if(numVerbs !== 0) {
@@ -68,29 +98,53 @@ function questionsStart() {
             verbPromptArray[2] = false;
         }
     }
+    //let usesVerbs;
+    verbChooseArray = [];
     if(verbPromptArray.includes(true)) {
         verbChooseArray = createVerbChooseArray(verbPromptArray);
+        usesVerbs = true;
     }
     else {
         numVerbs = 0;
+        usesVerbs = false;
     }
-
     let numOtherWords = deckOtherWords.length;
     if(numOtherWords !== 0) {
         numOtherWords = numOtherWords -1;
     }
     let otherWordPromptArray = [document.getElementById("otherWordCheck0").checked, document.getElementById("otherWordCheck1").checked];
+    //let usesOtherWords;
+    otherWordChooseArray = [];
     if(otherWordPromptArray.includes(true)) {
         otherWordChooseArray = createOtherWordChooseArray(otherWordPromptArray);
+        usesOtherWords = true;
     }
     else {
         numOtherWords = 0;
+        usesOtherWords = false;
     }
     let totalWords = numNouns + numVerbs + numOtherWords; //+numPronouns;
     if(totalWords === 0) {
         alert('Invalid deck')
         return;
     }
+    getQuestions(numNouns, numVerbs, numOtherWords)
+}
+
+/**
+ * Uses a random number to pick a word from the deck, and then, depending on the type of word and what types of questions the
+ * user wants for that word, uses more random numbers to generate the question, the instructions passed to the user, and the
+ * correct answer. Repeats this until it has generated the number of questions the user has indicated they want (default 20).
+ * Then, starts asking the user questions.
+ * 
+ * Likely needs significant refactoring.
+ * 
+ * @param {number} numNouns The number of substantives in the deck (or 0 if the user indicates they want no substantive questions)
+ * @param {number} numVerbs The number of verbs in the deck (or 0 if the user indicates they want no verb questions)
+ * @param {number} numOtherWords The number of other words in the deck (or 0 if the user indicates they want no other word questions)
+ */
+function getQuestions(numNouns, numVerbs, numOtherWords) {
+    let totalWords = numNouns + numVerbs + numOtherWords;
     let numCardsFieldValue = Number(numCardsField.value);
     let numCards = (Number.isInteger(numCardsFieldValue) && numCardsFieldValue > 0) ? numCardsFieldValue : 20;
     for (let wordIndex = 0; wordIndex < numCards; wordIndex++) {
@@ -115,6 +169,7 @@ function questionsStart() {
             alert('Invalid deck.');
             break;
         }
+        let questionType;
 
         if(typePicked === 'noun') {
             questionRand = getRandomInt(nounChooseArray.length);
@@ -383,7 +438,8 @@ function questionsStart() {
             }
         }
         else if(typePicked === 'otherWord') { //other word
-            questionType = getRandomInt(2);
+            questionRand = getRandomInt(otherWordChooseArray.length);
+            questionType = otherWordChooseArray[questionRand];
             switch (questionType) {
                 case 0:
                     instructions[wordIndex] = "Translate \"" + wordPicked.englishWord + "\" into Finnish";
@@ -403,6 +459,14 @@ function questionsStart() {
     getAnswers();
 }
 
+/**
+ * Creates an array of integers indicating which types of questions the user wants for substantives. If the user wants 
+ * question types 0 (translate to Finnish) and 2 (inflect), the returned array will be [0, 2]. This is useful for 
+ * calling a random number to randomly get one of the elements of the array, getting one of those two question types.
+ * 
+ * @param {boolean[]} nounPromptArray 
+ * @returns {number[]} 
+ */
 function createNounChooseArray(nounPromptArray) {
     let j = 0;
     let nounChooseArray = [];
@@ -415,18 +479,26 @@ function createNounChooseArray(nounPromptArray) {
     return nounChooseArray;
 }
 
+/**
+ * Reads checkboxes for inflection forms the user wants for substantives and creates an array of boolean
+ * values to indicate whether the user wants each form.
+ *  
+ * @returns {boolean[]}
+ */
 function createNounDeclinePromptArray() {
     let nounDeclinePromptArray = [];
     for(let i = 0; i < currentMaxNounForms; i++) {
         nounDeclinePromptArray[i] = document.getElementById("nounDecCheck" + i).checked;
     }
-    if(document.getElementById("nounDecCheck" + currentMaxNounForms) !== null) {
-        alert("If this is JP: \nYou forgot to update current max noun forms \n" +
-        "If this isn't JP: \nPlease email JP at @jepaulson2@wisc.edu and tell them they forgot to update current max noun forms");
-    }
     return nounDeclinePromptArray;
 }
 
+/**
+ * Creates an array of integers indicating the types of noun declensions the user wants to be tested on. 
+ * Works similarly to {@link createNounChooseArray}.
+ * 
+ * @param {boolean[]} nounDeclinePromptArray 
+ */
 function createNounDeclineChooseArray(nounDeclinePromptArray) {
     let nounDeclineChooseArray = [];
     let j = 0;
@@ -439,6 +511,11 @@ function createNounDeclineChooseArray(nounDeclinePromptArray) {
     return nounDeclineChooseArray;
 }
 
+/**
+ * @see createNounChooseArray
+ * 
+ * @param {number[]} verbPromptArray 
+ */
 function createVerbChooseArray(verbPromptArray) {
     let j = 0;
     let verbChooseArray = [];
@@ -451,18 +528,24 @@ function createVerbChooseArray(verbPromptArray) {
     return verbChooseArray;
 }
 
+/**
+ * @see createNounDeclinePromptArray
+ * 
+ * @returns {boolean[]}
+ */
 function createVerbConjPromptArray() {
     let verbConjPromptArray = [];
     for(let i = 0; i < currentMaxVerbForms; i++) {
         verbConjPromptArray[i] = document.getElementById("verbConjCheck" + i).checked;
     }
-    if(document.getElementById("verbConjCheck" + currentMaxVerbForms) !== null) {
-        alert("If this is JP: \nYou forgot to update current max verb forms \n" +
-        "If this isn't JP: \nPlease email JP at @jepaulson2@wisc.edu and tell them they forgot to update current max noun forms");
-    }
     return verbConjPromptArray;
 }
 
+/**
+ * @see createNounChooseArray and {@link createNounDeclineChooseArray}
+ * 
+ * @param {number[]} verbConjPromptArray 
+ */
 function createVerbConjChooseArray(verbConjPromptArray) {
     let verbConjChooseArray = [];
     let j = 0;
@@ -475,6 +558,11 @@ function createVerbConjChooseArray(verbConjPromptArray) {
     return verbConjChooseArray;
 }
 
+/**
+ * @see createNounChooseArray
+ * 
+ * @param {number[]} otherWordPromptArray 
+ */
 function createOtherWordChooseArray(otherWordPromptArray) {
     let j = 0;
     let otherWordChooseArray = [];
@@ -484,9 +572,15 @@ function createOtherWordChooseArray(otherWordPromptArray) {
             j++;
         }
     }
-    return nounChooseArray;
+    return otherWordChooseArray;
 }
 
+/**
+ * Sets answerIndex to 0 (indicating the question should relate to instructions[0] and answers[0]). If the instruction
+ * for that index is 'skip', it will increment answerIndex, and repeat that until the instruction is not 'skip'. 
+ * It then prints the instruction for the first question to the screen, then adds an event listener to the check 
+ * answer button that calls the callAnswers function.
+ */
 function getAnswers() {
     answerIndex = 0;
     while(instructions[answerIndex] === 'skip') {
@@ -496,6 +590,11 @@ function getAnswers() {
     userCheckButton.addEventListener('click', callAnswers);
 }
 
+/**
+ * Function is called every time the check answer button is clicked. Calls the checkAnswer function on the user's guess,
+ * then increments answerIndex. If the instruction for that index is 'skip', it will increment answerIndex again, and
+ * repeat that until the instruction is not skip. It then prints the instruction for the next question to the screen.
+ */
 function callAnswers() {
     checkAnswer();
     answerIndex += 1;

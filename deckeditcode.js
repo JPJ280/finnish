@@ -114,7 +114,7 @@ async function uploadFile() {
             document.getElementById('hePresNeg' + i).value = currentVerb.hePresNeg;
             document.getElementById('passPresPos' + i).value = currentVerb.passPresPos;
             document.getElementById('passPresNeg' + i).value = currentVerb.passPresNeg;
-            if(currentVerb.minaImpPos !== undefined) { //checks if noun has imperfect tense (may be empty)
+            if(currentVerb.minaImpPos !== undefined) { //checks if noun has imperfect tense (may be empty); should update to use formFixer function
                 document.getElementById('minaImpPos' + i).value = currentVerb.minaImpPos;
                 document.getElementById('minaImpNeg' + i).value = currentVerb.minaImpNeg;
                 document.getElementById('sinaImpPos' + i).value = currentVerb.sinaImpPos;
@@ -271,14 +271,6 @@ function saveOtherWord(otherWordSaveIndex) {
     otherWordToSave.finnishWord = finnishField.value;
     otherWordList[otherWordSaveIndex] = otherWordToSave;
 }
-
-addNounButton.addEventListener('click', loadNounSubmitButton);
-addVerbButton.addEventListener('click', loadVerbSubmitButton);
-addOtherWordButton.addEventListener('click', loadOtherWordSubmitButton);
-addNounButtonBottom.addEventListener('click', loadNounSubmitButton);
-addVerbButtonBottom.addEventListener('click', loadVerbSubmitButton);
-addOtherWordButtonBottom.addEventListener('click', loadOtherWordSubmitButton);
-
 
 saveAllWordsButton.addEventListener('click', saveAllWords);
 function saveAllWords() {
