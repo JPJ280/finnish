@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            #page {
+                display: flex;
+                flex-direction: row;
+            }
+            #game {
+                float: left;
+                width: 400px;
+                padding: 0 20px 0 20px;
+                flex: 4;
+            }
+            #settings {
+                float: left;
+                width: 300px;
+                padding: 0 20px 0 20px;
+                flex: 3;
+            }
+            .mainHeader {
+                margin-top: 0px;
+                margin-bottom: 3px;
+                text-align: center;
+            }
+            .secondHeader {
+                margin-top: 5px;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            .gameHead {
+                margin-bottom: 20px;
+                border: 5px solid #111199;
+                border-radius: 5px;
+                padding: 8px;
+            }
+            .settingsHead {
+                padding: 13px;
+                border: 5px solid #111199;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .blueRoundBox {
+                border: 5px solid #111199;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                padding: 8px;
+            }
+            form {
+                overflow: auto;
+            }
+        </style>
+        <script src="nightmode.js" defer></script>
+        <link rel="stylesheet" href="navigation.css">
+        <link rel="stylesheet" href="nightmodestyle.css">
+    </head>
+
+    <body>
+        <nav>
+            <ul class="navigation">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="createnewdeck.html">Create a New Deck</a></li>
+                <li><a href="usedeck.html">Use a Deck</a></li>
+                <li><a href="editdeck.html">Edit a Deck</a></li>
+            </ul>
+        </nav>
+        <div id="page">
+            <div id="game">
+                <div class="gameHead">
+                    <h1 class="mainHeader">Deck: Suomen Mestari Kappale 8</h1>
+                    <br>
+                    <h2 class="mainHeader"><a href="decks/SuomenMestariKap8.json" download>Download deck</a></h2>
+                    <!-- <input type="file" id="deckUpload" name="deckUpload">
+                    <button id="confirmUpload" name="confirmUpload">Upload Deck</button> -->
+                </div>
+                <button id="start" name="start">Start</button>
+                <br>
+                <p id="instruction"></p>
+                <br>
+                <div>
+                    <label for="answerLabel">
+                        Answer: <input type="text" id="userAnswerField"><button type="button" id="userAnswerSubmit">Check</button>
+                    </label>
+                </div>
+                <br>
+                <p id="feedback"></p>
+                <br>
+                <p id="testing"></p>
+            </div>
+            <div id="settings">
+                <div class="settingsHead"><h1 class="secondHeader">Settings</h1></div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Number of Cards:</h2>
+                    <input type="text" id="numCardsField" placeholder="Default 20">
+                    <h2 class="secondHeader">Presets:</h2>
+                    <button type="button" id="deckDefaultButton">Deck Default</button>
+                    <button type="button" id="standardPresetButton">Standard</button>
+                    <button type="button" id="basicPresetButton">Basic</button>
+                    <button type="button" id="allPresetButton">All Active</button>
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Substantives</h2>
+                    <br>
+                    <label for="EngToFinNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck1">Translate Into English
+                    </label>
+                    <br>
+                    <label for="DeclineNoun">
+                        <input type="checkbox" checked="checked" id="nounCheck2">Decline Finnish Words
+                    </label>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Yksikkö</th>
+                                <th>Monikko</th>
+                            </tr>
+                            <tr>
+                                <th>Nominatiivi</th>
+                                <td></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck0"></td>
+                            </tr>
+                            <tr>
+                                <th>Genetiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck2"></td>
+                            </tr>
+                            <tr>
+                                <th>Partitiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck4"></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>Inessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck5"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck6"></td>
+                            </tr>
+                            <tr>
+                                <th>Elatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck7"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck8"></td>
+                            </tr>
+                            <tr>
+                                <th>Illatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck9"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck10"></td>
+                            </tr>
+                            <tr>
+                                <th>Adessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck11"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck12"></td>
+                            </tr>
+                            <tr>
+                                <th>Ablatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck13"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck14"></td>
+                            </tr>
+                            <tr>
+                                <th>Allatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck15"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck16"></td>
+                            </tr>
+                            <tr>
+                                <th>Essiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck17"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck18"></td>
+                            </tr>
+                            <tr>
+                                <th>Translatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck19"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck20"></td>
+                            </tr>
+                            <tr>
+                                <th>Instruktiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck21"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck22"></td>
+                            </tr>
+                            <tr>
+                                <th>Abessiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck23"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck24"></td>
+                            </tr>
+                            <tr>
+                                <th>Komitatiivi</th>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck25"></td>
+                                <td><input checked="checked" type="checkbox" id="nounDecCheck26"></td>
+                            </tr>
+
+                        </table>
+                    </form>
+
+
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Verbs</h2>
+                    <br>
+                    <label for="EngToFinVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck1">Translate Into English
+                    </label>
+                    <br>
+                    <label for="ConjugateVerb">
+                        <input type="checkbox" checked="checked" id="verbCheck2">Conjugate Finnish Verbs
+                    </label>
+                    <form>
+                        <table>
+                            <tr>
+                                <td></td>
+                                <th>Preesens Positiivinen</th>
+                                <th>Preesens Negatiivinen</th>
+                                <th>Imperfekti Positiivinen</th>
+                                <th>Imperfekti Negatiivinen</th>
+                            </tr>
+                            <tr>
+                                <th>Minä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck0"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck7"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck14"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck21"></td>
+                            </tr>
+                            <tr>
+                                <th>Sinä</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck1"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck8"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck15"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck22"></td>
+                            </tr>
+                            <tr>
+                                <th>Hän</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck2"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck9"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck16"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck23"></td>
+                            </tr>
+                            <tr>
+                                <th>Me</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck3"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck10"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck17"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck24"></td>
+                            </tr>
+                            <tr>
+                                <th>Te</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck4"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck11"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck18"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck25"></td>
+                            </tr>
+                            <tr>
+                                <th>He</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck5"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck12"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck19"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck26"></td>
+                            </tr>
+                            <tr>
+                                <th>Passiivi</th>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck6"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck13"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck20"></td>
+                                <td><input checked="checked" type="checkbox" id="verbConjCheck27"></td>
+                            </tr>
+
+                        </table>
+                    </form>
+                </div>
+                <div class="blueRoundBox">
+                    <h2 class="secondHeader">Other Words</h2>
+                    <br>
+                    <label for="EngToFinOtherWord">
+                        <input type="checkbox" checked="checked" id="otherWordCheck0">Translate Into Finnish
+                    </label>
+                    <br>
+                    <label for="FinnToEngOtherWord">
+                        <input type="checkbox" checked="checked" id="otherWordCheck1">Translate Into English
+                    </label>
+                </div>
+                
+            </div> <!--end of settings div-->
+        </div>
+
+        <script>
+            let deckFile;
+            let deck;
+            let deckNouns;
+            let deckVerbs;
+            let deckOtherWords;
+            let deckConfig;
+            let startButton = document.getElementById('start');
+            const numCardsField = document.getElementById('numCardsField');
+            //const confirmUpload = document.getElementById('confirmUpload');
+            //confirmUpload.addEventListener('click', uploadFile);
+
+            async function uploadFile() {
+                let deckRequest = new Request("https://jpj280.github.io/finnish/decks/SuomenMestariKap8.json");
+                let deckFileText = await fetch(deckRequest).then(function(response){return response.text()});
+                deck = JSON.parse(deckFileText);
+                deckNouns = deck.nouns;
+                deckVerbs = deck.verbs;
+                deckOtherWords = deck.otherWords;
+                deckPronouns = deck.pronouns;
+                deckConfig = deck.deckConfig;
+                if(deckConfig !== undefined) {
+                    useSettings(deckConfig);
+                    numCardsField.value = deckConfig.numCards;
+                }
+            }
+
+            uploadFile();
+
+
+        </script>
+        <script src="drillcode.js" defer></script>
+        <script src="usedecksettings.js"></script>
+    </body>
+
+</html>
