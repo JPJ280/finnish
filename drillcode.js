@@ -242,53 +242,53 @@ function getQuestions(numNouns, numVerbs, numOtherWords) {
                             break;
                         case 13:
                             nounCase = 'yksikön ablatiivi';
-                            answer[wordIndex] = wordPicked.adeSing;
+                            answer[wordIndex] = wordPicked.ablSing;
                             break;
                         case 14:
                             nounCase = 'monikon ablatiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.ablPlu;
                             break;
                         case 15:
                             nounCase = 'yksikön allatiivi';
-                            answer[wordIndex] = wordPicked.adeSing;
+                            answer[wordIndex] = wordPicked.allSing;
                             break;
                         case 16:
                             nounCase = 'monikon allatiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.allPlu;
                             break;
                         case 17:
                             nounCase = 'yksikön essiivi';
-                            answer[wordIndex] = wordPicked.adeSing;
+                            answer[wordIndex] = wordPicked.essSing;
                             break;
                         case 18:
                             nounCase = 'monikon essiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.essPlu;
                             break;
                         case 19:
                             nounCase = 'yksikön translatiivi';
-                            answer[wordIndex] = wordPicked.adeSing;
+                            answer[wordIndex] = wordPicked.traSing;
                             break;
                         case 20:
                             nounCase = 'monikon translatiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.traPlu;
                             break;
                         case 21:
                         case 22:
                             nounCase = 'monikon instruktiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.intPlu;
                             break;
                         case 23:
                             nounCase = 'yksikön abessiivi';
-                            answer[wordIndex] = wordPicked.adeSing;
+                            answer[wordIndex] = wordPicked.abeSing;
                             break;
                         case 24:
                             nounCase = 'monikon abessiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.abePlu;
                             break;
                         case 25:
                         case 26:
                             nounCase = 'monikon komitatiivi';
-                            answer[wordIndex] = wordPicked.adePlu;
+                            answer[wordIndex] = wordPicked.comPlu;
                             break;
 
                     }
